@@ -1,6 +1,6 @@
 {
 	"name": "fcc-hyd-links-api",
-	"alias": ["api-linklet.now.sh"],
+	"alias": ["api.links.linklet.ml"],
 	"env": {
 		"NODE_ENV": "production",
 		"MONGO_URL": "@fcc-hyd-links-mlab"

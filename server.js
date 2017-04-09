@@ -2,6 +2,8 @@ require('./config')
 require('./mongoose')
 const Link = require('./models/link')
 
+var http = require('http')
+var url = require('url')
 const express = require('express')
 const app = express()
 
@@ -14,14 +16,14 @@ app.get('/', (req, res) => {
 /*
 /links/all?page=1
 */
-app.get('/links/all/', (req, res) => {
-  const { page = 1 } = req.query
-  const perPage = 25
+app.get('/api/links/all/', (req, res) => {
+  const { page = 1, sort = -1 } = req.query
+  const perPage = 12
   Link.find({}).count().then(count => {
     Link.find({})
       .skip(perPage * (page - 1))
       .limit(perPage)
-      .sort({ timestamp: -1 })
+      .sort({ timestamp: sort })
       .then(links =>
         res.send({
           page,
@@ -37,20 +39,21 @@ app.get('/links/all/', (req, res) => {
 /*
 /links/filter?start=738687637186&end=6327653668716&page=2
 */
-app.get('/links/filter/', (req, res) => {
+app.get('/api/links/filter/', (req, res) => {
   const today = new Date()
   const last7thDay = addDays(today, -7)
   const {
     start = last7thDay.getTime(),
     end = today.getTime(),
-    page = 1
+    page = 1,
+    sort = -1
   } = req.query
-  const perPage = 25
-  Link.find({ timestamp: { $gte: start, $lte: end } }).count().then(count => {
-    Link.find({ timestamp: { $gte: start, $lte: end } })
+  const perPage = 12
+  Link.find({ timestamp: { $gt: start, $lte: end } }).count().then(count => {
+    Link.find({ timestamp: { $gt: start, $lte: end } })
       .skip(perPage * (page - 1))
       .limit(perPage)
-      .sort({ timestamp: -1 })
+      .sort({ timestamp: sort })
       .then(links =>
         res.send({
           page,
@@ -61,6 +64,41 @@ app.get('/links/filter/', (req, res) => {
         }))
       .catch(err => res.status(400).send(err))
   })
+})
+
+app.get('/api/proxy/:imgUrl(*)', (proxyReq, proxyResp) => {
+  const { imgUrl } = proxyReq.params
+  const destParams = url.parse(imgUrl)
+
+  const reqOptions = {
+    host: destParams.host,
+    port: 80,
+    path: destParams.path,
+    method: 'GET'
+  }
+
+  var req = http.request(reqOptions, function (res) {
+    var headers = res.headers
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Headers'] = 'X-Requested-With'
+    proxyResp.writeHead(200, headers)
+
+    res.on('data', function (chunk) {
+      proxyResp.write(chunk)
+    })
+
+    res.on('end', function () {
+      proxyResp.end()
+    })
+  })
+
+  req.on('error', function (e) {
+    console.log('problem with request: ' + e.message)
+    proxyResp.writeHead(503)
+    proxyResp.write('An error happened!')
+    proxyResp.end()
+  })
+  req.end()
 })
 
 app.listen(3000, err => {
