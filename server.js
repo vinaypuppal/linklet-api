@@ -20,36 +20,36 @@ app.get('/api/links/all/', (req, res) => {
   const { page = 1, sort = -1, search } = req.query
   const perPage = 12
   if (search) {
-    Link.find({$text: {$search: search}}).count().then(count => {
-      Link.find({$text: {$search: search}})
-      .skip(perPage * (page - 1))
-      .limit(perPage)
-      .sort({ timestamp: sort })
-      .then(links =>
-        res.send({
-          page,
-          perPage,
-          totalLinks: count,
-          isLastPage: perPage * page >= count,
-          links
-        }))
-      .catch(err => res.status(400).send(err))
+    Link.find({ $text: { $search: search } }).count().then(count => {
+      Link.find({ $text: { $search: search } })
+        .skip(perPage * (page - 1))
+        .limit(perPage)
+        .sort({ timestamp: sort })
+        .then(links =>
+          res.send({
+            page,
+            perPage,
+            totalLinks: count,
+            isLastPage: perPage * page >= count,
+            links
+          }))
+        .catch(err => res.status(400).send(err))
     })
   } else {
     Link.find({}).count().then(count => {
       Link.find({})
-      .skip(perPage * (page - 1))
-      .limit(perPage)
-      .sort({ timestamp: sort })
-      .then(links =>
-        res.send({
-          page,
-          perPage,
-          totalLinks: count,
-          isLastPage: perPage * page >= count,
-          links
-        }))
-      .catch(err => res.status(400).send(err))
+        .skip(perPage * (page - 1))
+        .limit(perPage)
+        .sort({ timestamp: sort })
+        .then(links =>
+          res.send({
+            page,
+            perPage,
+            totalLinks: count,
+            isLastPage: perPage * page >= count,
+            links
+          }))
+        .catch(err => res.status(400).send(err))
     })
   }
 })
@@ -69,36 +69,44 @@ app.get('/api/links/filter/', (req, res) => {
   } = req.query
   const perPage = 12
   if (search) {
-    Link.find({ timestamp: { $gt: start, $lte: end }, $text: {$search: search} }).count().then(count => {
-      Link.find({ timestamp: { $gt: start, $lte: end }, $text: {$search: search} })
-      .skip(perPage * (page - 1))
-      .limit(perPage)
-      .sort({ timestamp: sort })
-      .then(links =>
-        res.send({
-          page,
-          perPage,
-          totalLinks: count,
-          isLastPage: perPage * page >= count,
-          links
-        }))
-      .catch(err => res.status(400).send(err))
+    Link.find({
+      timestamp: { $gt: start, $lte: end },
+      $text: { $search: search }
     })
+      .count()
+      .then(count => {
+        Link.find({
+          timestamp: { $gt: start, $lte: end },
+          $text: { $search: search }
+        })
+          .skip(perPage * (page - 1))
+          .limit(perPage)
+          .sort({ timestamp: sort })
+          .then(links =>
+            res.send({
+              page,
+              perPage,
+              totalLinks: count,
+              isLastPage: perPage * page >= count,
+              links
+            }))
+          .catch(err => res.status(400).send(err))
+      })
   } else {
     Link.find({ timestamp: { $gt: start, $lte: end } }).count().then(count => {
       Link.find({ timestamp: { $gt: start, $lte: end } })
-      .skip(perPage * (page - 1))
-      .limit(perPage)
-      .sort({ timestamp: sort })
-      .then(links =>
-        res.send({
-          page,
-          perPage,
-          totalLinks: count,
-          isLastPage: perPage * page >= count,
-          links
-        }))
-      .catch(err => res.status(400).send(err))
+        .skip(perPage * (page - 1))
+        .limit(perPage)
+        .sort({ timestamp: sort })
+        .then(links =>
+          res.send({
+            page,
+            perPage,
+            totalLinks: count,
+            isLastPage: perPage * page >= count,
+            links
+          }))
+        .catch(err => res.status(400).send(err))
     })
   }
 })
