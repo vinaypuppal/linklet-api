@@ -2,12 +2,21 @@ require('./config')
 require('./mongoose')
 const Link = require('./models/link')
 
-var http = require('http')
-var url = require('url')
+const http = require('http')
+const url = require('url')
 const express = require('express')
 const app = express()
+const RateLimit = require('express-rate-limit')
 
 const addDays = require('date-fns/add_days')
+
+var apiLimiter = new RateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+  delayMs: 0 // disabled
+})
+
+app.use('/api/', apiLimiter)
 
 app.get('/', (req, res) => {
   res.status(404).send('Not Found')
