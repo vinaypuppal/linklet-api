@@ -13,6 +13,7 @@ https://api.links.linklet.ml
 ```
 
 ### Endpoints
+#### #1
 ```
 /api/links/all/
 ``` 
@@ -26,6 +27,7 @@ https://api.links.linklet.ml
 https://api.links.linklet.ml/api/links/all?page=2&sort=-1&search=freecodecamp
 ``` 
 
+#### #2
 ```
 /api/links/filter/
 ``` 
