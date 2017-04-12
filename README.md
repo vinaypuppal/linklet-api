@@ -15,7 +15,7 @@ https://api.links.linklet.ml
 ### Endpoints
 #### #1
 ```
-/api/links/all/
+GET /api/links/all/
 ``` 
 - It fetches all the links without any filters
 - It takes following query parameters
@@ -29,7 +29,7 @@ https://api.links.linklet.ml/api/links/all?page=2&sort=-1&search=freecodecamp
 
 #### #2
 ```
-/api/links/filter/
+GET /api/links/filter/
 ``` 
 - It fetches all the links with date range filters
 - It takes following query parameters
