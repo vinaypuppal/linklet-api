@@ -20,6 +20,8 @@ const linkSchema = new Schema({
   title: String
 })
 
+linkSchema.index({description: 'text', title: 'text'})
+
 const Link = mongoose.model('Link', linkSchema)
 
 module.exports = Link
