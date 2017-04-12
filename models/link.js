@@ -20,7 +20,7 @@ const linkSchema = new Schema({
   title: String
 })
 
-linkSchema.index({description: 'text', title: 'text'})
+linkSchema.index({description: 'text', title: 'text', url: 'text'})
 
 const Link = mongoose.model('Link', linkSchema)
 
