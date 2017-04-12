@@ -1,5 +1,5 @@
 {
-	"name": "fcc-hyd-links-api",
+	"name": "linklet-api",
 	"alias": ["api.links.linklet.ml"],
 	"env": {
 		"NODE_ENV": "production",

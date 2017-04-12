@@ -1,5 +1,5 @@
 {
-  "name": "fcc-links-api",
+  "name": "linklet-api",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -14,6 +14,7 @@
   "author": "Vinay Puppal <me@vinaypuppal.com> (https://www.vinaypuppal.com/)",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.3",
     "date-fns": "^1.28.1",
     "express": "^4.15.2",
     "mongoose": "^4.9.1"
