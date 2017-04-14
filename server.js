@@ -9,6 +9,8 @@ const app = express()
 const RateLimit = require('express-rate-limit')
 
 const addDays = require('date-fns/add_days')
+const urlRegex = require('url-regex')
+const { scrapeUrl } = require('metascraper')
 
 var apiLimiter = new RateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -118,6 +120,33 @@ app.get('/api/links/filter/', (req, res) => {
         .catch(err => res.status(400).send(err))
     })
   }
+})
+
+app.get('/api/metadata/', (req, res) => {
+  let { url } = req.query
+  if (!url) {
+    return res.status(400).send({
+      message: 'Please Provide URL!...'
+    })
+  }
+  if (!urlRegex().test(url)) {
+    return res.status(400).send({
+      message: 'Please Provide Valid URL!...'
+    })
+  }
+  if (url && !/^https?:\/\//i.test(url)) {
+    url = 'http://' + url
+  }
+  scrapeUrl(url)
+    .then(data => {
+      res.send(Object.assign({}, data, { url }))
+    })
+    .catch(e => {
+      res.status(400).send({
+        message: `Scraping the open graph data from ${url} failed.`,
+        suggestion: 'Make sure your URL is correct and the webpage has open graph data, meta tags or twitter card data.'
+      })
+    })
 })
 
 app.get('/api/proxy/:imgUrl(*)', (proxyReq, proxyResp) => {

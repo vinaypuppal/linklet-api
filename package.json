@@ -17,7 +17,9 @@
     "date-fns": "^1.28.1",
     "express": "^4.15.2",
     "express-rate-limit": "^2.6.0",
-    "mongoose": "^4.9.1"
+    "metascraper": "^1.0.6",
+    "mongoose": "^4.9.1",
+    "url-regex": "^4.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0",
