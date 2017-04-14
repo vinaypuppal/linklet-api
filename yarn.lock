@@ -6,6 +6,29 @@
   version "0.3.1"
   resolved "@google-maps-0.3.1.tgz#3f10303033e53d3fc7bb9d6268de2266803bf781"
 
+<<<<<<< HEAD
+=======
+"@types/fs-extra@0.0.37":
+  version "0.0.37"
+  resolved "@types-fs-extra-0.0.37.tgz#195f11bcd9a1b97d9e412c6b66899b545471a1f7"
+  dependencies:
+    "@types/node" "*"
+
+"@types/mz@0.0.30":
+  version "0.0.30"
+  resolved "@types-mz-0.0.30.tgz#58daa9f35811d607037bab1f9cc7d4a23e6aafae"
+  dependencies:
+    "@types/node" "*"
+
+"@types/node@*":
+  version "7.0.10"
+  resolved "@types-node-7.0.10.tgz#d860abb18c1b58b552c7c6cd8b2ba7adf6546fa3"
+
+abab@^1.0.0:
+  version "1.0.3"
+  resolved abab-1.0.3.tgz#b81de5f7274ec4e756d797cd834f303642724e5d
+
+>>>>>>> master
 abbrev@1:
   version "1.1.0"
   resolved abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f
@@ -17,12 +40,29 @@ accepts@~1.3.3:
     mime-types "~2.1.11"
     negotiator "0.6.1"
 
+acorn-globals@^1.0.4:
+  version "1.0.9"
+  resolved acorn-globals-1.0.9.tgz#55bb5e98691507b74579d0513413217c380c54cf
+  dependencies:
+    acorn "^2.1.0"
+
 acorn-jsx@^3.0.0:
   version "3.0.1"
   resolved acorn-jsx-3.0.1.tgz#afdf9488fb1ecefc8348f6fb22f464e32a58b36b
   dependencies:
     acorn "^3.0.4"
 
+<<<<<<< HEAD
+=======
+acorn@4.0.4:
+  version "4.0.4"
+  resolved acorn-4.0.4.tgz#17a8d6a7a6c4ef538b814ec9abac2779293bf30a
+
+acorn@^2.1.0, acorn@^2.4.0:
+  version "2.7.0"
+  resolved acorn-2.7.0.tgz#ab6e7d9d886aaca8b085bc3312b79a198433f0e7
+
+>>>>>>> master
 acorn@^3.0.4:
   version "3.3.0"
   resolved acorn-3.3.0.tgz#45e37fb39e8da3f25baee3ff5369e2bb5f22017a
@@ -45,6 +85,10 @@ ajv@^4.7.0, ajv@^4.9.1:
   dependencies:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
+
+amdefine@>=0.0.4:
+  version "1.0.1"
+  resolved amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5
 
 ansi-align@^1.1.0:
   version "1.1.0"
@@ -188,6 +232,10 @@ async@2.1.4:
   dependencies:
     lodash "^4.14.0"
 
+async@~0.9.0:
+  version "0.9.2"
+  resolved async-0.9.2.tgz#aea74d5e61c1f899613bf64bda66d4c78f2fd17d
+
 asynckit@^0.4.0:
   version "0.4.0"
   resolved asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79
@@ -267,6 +315,10 @@ bluebird@2.10.2, bluebird@^2.10.2:
 bluebird@^3.3.1:
   version "3.5.0"
   resolved bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c
+
+boolbase@~1.0.0:
+  version "1.0.0"
+  resolved boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e
 
 boom@2.x.x:
   version "2.10.1"
@@ -368,6 +420,18 @@ chalk@1.1.3, chalk@^1.0.0, chalk@^1.1.0, chalk@^1.1.1, chalk@^1.1.3:
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
 
+cheerio@^0.20.0:
+  version "0.20.0"
+  resolved cheerio-0.20.0.tgz#5c710f2bab95653272842ba01c6ea61b3545ec35
+  dependencies:
+    css-select "~1.2.0"
+    dom-serializer "~0.1.0"
+    entities "~1.1.1"
+    htmlparser2 "~3.8.1"
+    lodash "^4.1.0"
+  optionalDependencies:
+    jsdom "^7.0.2"
+
 chokidar@^1.4.3:
   version "1.6.1"
   resolved chokidar-1.6.1.tgz#2f4447ab5e96e50fb3d789fd90d4c72e0e4c70c2
@@ -382,6 +446,12 @@ chokidar@^1.4.3:
     readdirp "^2.0.0"
   optionalDependencies:
     fsevents "^1.0.0"
+
+chrono-node@^1.2.3:
+  version "1.3.1"
+  resolved chrono-node-1.3.1.tgz#d0dc762a4d926051b75016ad63c100caff9d1d84
+  dependencies:
+    moment "^2.10.3"
 
 circular-json@^0.3.1:
   version "0.3.1"
@@ -411,6 +481,10 @@ cli-width@^2.0.0:
   version "2.1.0"
   resolved cli-width-2.1.0.tgz#b234ca209b29ef66fc518d9b98d5847b00edf00a
 
+clone@^1.0.2:
+  version "1.0.2"
+  resolved clone-1.0.2.tgz#260b7a99ebb1edfe247538175f783243cb19d149
+
 co@^4.6.0:
   version "4.6.0"
   resolved co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184
@@ -439,6 +513,12 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
+combined-stream@~0.0.4:
+  version "0.0.7"
+  resolved combined-stream-0.0.7.tgz#0137e657baa5a7541c57ac37ac5fc07d73b4dc1f
+  dependencies:
+    delayed-stream "0.0.5"
+
 commander@~2.8.1:
   version "2.8.1"
   resolved commander-2.8.1.tgz#06be367febfda0c330aa1e2a072d3dc9762425d4
@@ -465,7 +545,7 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b
 
-concat-stream@^1.5.2:
+concat-stream@^1.4.7, concat-stream@^1.5.2:
   version "1.6.0"
   resolved concat-stream-1.6.0.tgz#0aac662fd52be78964d5532f694784e70110acf7
   dependencies:
@@ -574,6 +654,29 @@ crypto-random-string@^1.0.0:
   version "1.0.0"
   resolved crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e
 
+css-select@~1.2.0:
+  version "1.2.0"
+  resolved css-select-1.2.0.tgz#2b3a110539c5355f1cd8d314623e870b121ec858
+  dependencies:
+    boolbase "~1.0.0"
+    css-what "2.1"
+    domutils "1.5.1"
+    nth-check "~1.0.1"
+
+css-what@2.1:
+  version "2.1.0"
+  resolved css-what-2.1.0.tgz#9467d032c38cfaefb9f2d79501253062f87fa1bd
+
+cssom@0.3.x, "cssom@>= 0.3.0 < 0.4.0":
+  version "0.3.2"
+  resolved cssom-0.3.2.tgz#b8036170c79f07a90ff2f16e22284027a243848b
+
+"cssstyle@>= 0.2.29 < 0.3.0":
+  version "0.2.37"
+  resolved cssstyle-0.2.37.tgz#541097234cb2513c83ceed3acddc27ff27987d54
+  dependencies:
+    cssom "0.3.x"
+
 d@1:
   version "1.0.0"
   resolved d-1.0.0.tgz#754bb5bfe55451da69a58b94d45f4c5b0462d58f
@@ -674,6 +777,12 @@ deep-is@~0.1.3:
   version "0.1.3"
   resolved deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34
 
+defaults@^1.0.3:
+  version "1.0.3"
+  resolved defaults-1.0.3.tgz#c656051e9817d9ff08ed881477f3fe4019f3ef7d
+  dependencies:
+    clone "^1.0.2"
+
 define-properties@^1.1.2:
   version "1.1.2"
   resolved define-properties-1.1.2.tgz#83a73f2fea569898fb737193c8f873caf6d45c94
@@ -703,6 +812,10 @@ del@^2.0.2:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
     rimraf "^2.2.8"
+
+delayed-stream@0.0.5:
+  version "0.0.5"
+  resolved delayed-stream-0.0.5.tgz#d4b1f43a93e8296dfe02694f4680bc37a313c73f
 
 delayed-stream@~1.0.0:
   version "1.0.0"
@@ -737,6 +850,30 @@ doctrine@^2.0.0:
   dependencies:
     esutils "^2.0.2"
     isarray "^1.0.0"
+
+dom-serializer@0, dom-serializer@~0.1.0:
+  version "0.1.0"
+  resolved dom-serializer-0.1.0.tgz#073c697546ce0780ce23be4a28e293e40bc30c82
+  dependencies:
+    domelementtype "~1.1.1"
+    entities "~1.1.1"
+
+domelementtype@1, domelementtype@~1.1.1:
+  version "1.1.3"
+  resolved domelementtype-1.1.3.tgz#bd28773e2642881aec51544924299c5cd822185b
+
+domhandler@2.3:
+  version "2.3.0"
+  resolved domhandler-2.3.0.tgz#2de59a0822d5027fabff6f032c2b25a2a8abe738
+  dependencies:
+    domelementtype "1"
+
+domutils@1.5, domutils@1.5.1:
+  version "1.5.1"
+  resolved domutils-1.5.1.tgz#dcd8488a26f563d61079e48c9f7b7e32373682cf
+  dependencies:
+    dom-serializer "0"
+    domelementtype "1"
 
 dot-prop@^4.1.0:
   version "4.1.1"
@@ -848,6 +985,14 @@ engine.io-parser@1.3.2:
     has-binary "0.1.7"
     wtf-8 "1.0.0"
 
+entities@1.0:
+  version "1.0.0"
+  resolved entities-1.0.0.tgz#b2987aa3821347fcde642b24fdfc9e4fb712bf26
+
+entities@~1.1.1:
+  version "1.1.1"
+  resolved entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0
+
 error-ex@^1.2.0:
   version "1.3.1"
   resolved error-ex-1.3.1.tgz#f855a86ce61adc4e8621c3cda21e7a7612c3a8dc
@@ -935,9 +1080,24 @@ escape-html@~1.0.3:
   version "1.0.3"
   resolved escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988
 
+escape-regexp-component@^1.0.2:
+  version "1.0.2"
+  resolved escape-regexp-component-1.0.2.tgz#9c63b6d0b25ff2a88c3adbd18c5b61acc3b9faa2
+
 escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4
+
+escodegen@^1.6.1:
+  version "1.8.1"
+  resolved escodegen-1.8.1.tgz#5a5b53af4693110bebb0867aa3430dd3b70a1018
+  dependencies:
+    esprima "^2.7.1"
+    estraverse "^1.9.1"
+    esutils "^2.0.2"
+    optionator "^0.8.1"
+  optionalDependencies:
+    source-map "~0.2.0"
 
 escope@^3.6.0:
   version "3.6.0"
@@ -1019,6 +1179,10 @@ espree@^3.4.0:
     acorn "^5.0.1"
     acorn-jsx "^3.0.0"
 
+esprima@^2.7.1:
+  version "2.7.3"
+  resolved esprima-2.7.3.tgz#96e3b70d5779f6ad49cd032673d1c312767ba581
+
 esprima@^3.1.1:
   version "3.1.3"
   resolved esprima-3.1.3.tgz#fdca51cee6133895e3c88d535ce49dbff62a4633
@@ -1035,6 +1199,10 @@ esrecurse@^4.1.0:
   dependencies:
     estraverse "~4.1.0"
     object-assign "^4.0.1"
+
+estraverse@^1.9.1:
+  version "1.9.3"
+  resolved estraverse-1.9.3.tgz#af67f2dc922582415950926091a4005d29c9bb44
 
 estraverse@^4.0.0, estraverse@^4.1.1, estraverse@^4.2.0:
   version "4.2.0"
@@ -1097,6 +1265,12 @@ expand-range@^1.8.1:
   resolved expand-range-1.8.2.tgz#a299effd335fe2721ebae8e257ec79644fc85337
   dependencies:
     fill-range "^2.1.0"
+
+express-rate-limit@^2.6.0:
+  version "2.6.0"
+  resolved express-rate-limit-2.6.0.tgz#ecd359e15aa7f596dc80a604555765c02a3b2436
+  dependencies:
+    defaults "^1.0.3"
 
 express@^4.15.2:
   version "4.15.2"
@@ -1267,6 +1441,14 @@ foreach@^2.0.5:
 forever-agent@~0.6.1:
   version "0.6.1"
   resolved forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91
+
+form-data@^0.2.0:
+  version "0.2.0"
+  resolved form-data-0.2.0.tgz#26f8bc26da6440e299cbdcfb69035c4f77a6e466
+  dependencies:
+    async "~0.9.0"
+    combined-stream "~0.0.4"
+    mime-types "~2.0.3"
 
 form-data@~2.1.1:
   version "2.1.4"
@@ -1529,6 +1711,16 @@ hooks-fixed@2.0.0:
   version "2.0.0"
   resolved hooks-fixed-2.0.0.tgz#a01d894d52ac7f6599bbb1f63dfc9c411df70cba
 
+htmlparser2@~3.8.1:
+  version "3.8.3"
+  resolved htmlparser2-3.8.3.tgz#996c28b191516a8be86501a7d79757e5c70c1068
+  dependencies:
+    domelementtype "1"
+    domhandler "2.3"
+    domutils "1.5"
+    entities "1.0"
+    readable-stream "1.1"
+
 http-errors@~1.6.1:
   version "1.6.1"
   resolved http-errors-1.6.1.tgz#5f8b8ed98aca545656bf572997387f904a722257
@@ -1629,9 +1821,19 @@ interpret@^1.0.0:
   version "1.0.2"
   resolved interpret-1.0.2.tgz#f4f623f0bb7122f15f5717c8e254b8161b5c5b2d
 
+<<<<<<< HEAD
 ipaddr.js@1.3.0:
   version "1.3.0"
   resolved ipaddr.js-1.3.0.tgz#1e03a52fdad83a8bbb2b25cbf4998b4cffcd3dec
+=======
+ip-regex@^1.0.1:
+  version "1.0.3"
+  resolved ip-regex-1.0.3.tgz#dc589076f659f419c222039a33316f1c7387effd
+
+ipaddr.js@1.2.0:
+  version "1.2.0"
+  resolved ipaddr.js-1.2.0.tgz#8aba49c9192799585bdd643e0ccb50e8ae777ba4
+>>>>>>> master
 
 is-absolute@^0.1.5:
   version "0.1.7"
@@ -1700,6 +1902,10 @@ is-glob@^2.0.0, is-glob@^2.0.1:
   resolved is-glob-2.0.1.tgz#d096f926a3ded5600f3fdfd91198cb0888c2d863
   dependencies:
     is-extglob "^1.0.0"
+
+is-isodate@0.0.1:
+  version "0.0.1"
+  resolved is-isodate-0.0.1.tgz#4fe2e937d50f3ba68c7b69b0218008b624aa5036
 
 is-my-json-valid@^2.10.0:
   version "2.16.0"
@@ -1796,7 +2002,7 @@ is-typedarray@~1.0.0:
   version "1.0.0"
   resolved is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a
 
-is-url@1.2.2:
+is-url@1.2.2, is-url@^1.2.1:
   version "1.2.2"
   resolved is-url-1.2.2.tgz#498905a593bf47cc2d9e7f738372bbf7696c7f26
 
@@ -1858,6 +2064,26 @@ js-yaml@^3.5.1:
 jsbn@~0.1.0:
   version "0.1.1"
   resolved jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513
+
+jsdom@^7.0.2:
+  version "7.2.2"
+  resolved jsdom-7.2.2.tgz#40b402770c2bda23469096bee91ab675e3b1fc6e
+  dependencies:
+    abab "^1.0.0"
+    acorn "^2.4.0"
+    acorn-globals "^1.0.4"
+    cssom ">= 0.3.0 < 0.4.0"
+    cssstyle ">= 0.2.29 < 0.3.0"
+    escodegen "^1.6.1"
+    nwmatcher ">= 1.3.7 < 2.0.0"
+    parse5 "^1.5.1"
+    request "^2.55.0"
+    sax "^1.1.4"
+    symbol-tree ">= 3.1.0 < 4.0.0"
+    tough-cookie "^2.2.0"
+    webidl-conversions "^2.0.0"
+    whatwg-url-compat "~0.6.5"
+    xml-name-validator ">= 2.0.1 < 3.0.0"
 
 json-schema@0.2.3:
   version "0.2.3"
@@ -2033,7 +2259,7 @@ lodash.restparam@^3.0.0:
   version "3.6.1"
   resolved lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805
 
-lodash@^4.0.0, lodash@^4.14.0, lodash@^4.3.0:
+lodash@^4.0.0, lodash@^4.1.0, lodash@^4.14.0, lodash@^4.3.0:
   version "4.17.4"
   resolved lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae
 
@@ -2060,6 +2286,16 @@ magic-string@^0.19.0:
   dependencies:
     vlq "^0.2.1"
 
+make-error-cause@^1.0.1:
+  version "1.2.2"
+  resolved make-error-cause-1.2.2.tgz#df0388fcd0b37816dff0a5fb8108939777dcbc9d
+  dependencies:
+    make-error "^1.2.0"
+
+make-error@^1.2.0:
+  version "1.2.3"
+  resolved make-error-1.2.3.tgz#6c4402df732e0977ac6faf754a5074b3d2b1d19d
+
 map-stream@~0.1.0:
   version "0.1.0"
   resolved map-stream-0.1.0.tgz#e56aa94c4c8055a16404a0674b78f215f7c8e194
@@ -2071,6 +2307,17 @@ media-typer@0.3.0:
 merge-descriptors@1.0.1:
   version "1.0.1"
   resolved merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61
+
+metascraper@^1.0.6:
+  version "1.0.6"
+  resolved metascraper-1.0.6.tgz#d7f9ec99bda3ca6870ee5b730c1b44f41d2d7fa4
+  dependencies:
+    cheerio "^0.20.0"
+    chrono-node "^1.2.3"
+    is-isodate "0.0.1"
+    is-url "^1.2.1"
+    popsicle "^6.2.0"
+    to-title-case "^1.0.0"
 
 methods@~1.1.2:
   version "1.1.2"
@@ -2094,15 +2341,31 @@ micromatch@^2.1.5:
     parse-glob "^3.0.4"
     regex-cache "^0.4.2"
 
+<<<<<<< HEAD
 mime-db@~1.27.0:
   version "1.27.0"
   resolved mime-db-1.27.0.tgz#820f572296bbd20ec25ed55e5b5de869e5436eb1
+=======
+mime-db@~1.12.0:
+  version "1.12.0"
+  resolved mime-db-1.12.0.tgz#3d0c63180f458eb10d325aaa37d7c58ae312e9d7
+
+mime-db@~1.26.0:
+  version "1.26.0"
+  resolved mime-db-1.26.0.tgz#eaffcd0e4fc6935cf8134da246e2e6c35305adff
+>>>>>>> master
 
 mime-types@^2.1.12, mime-types@~2.1.11, mime-types@~2.1.15, mime-types@~2.1.7:
   version "2.1.15"
   resolved mime-types-2.1.15.tgz#a4ebf5064094569237b8cf70046776d09fc92aed
   dependencies:
     mime-db "~1.27.0"
+
+mime-types@~2.0.3:
+  version "2.0.14"
+  resolved mime-types-2.0.14.tgz#310e159db23e077f8bb22b748dabfa4957140aa6
+  dependencies:
+    mime-db "~1.12.0"
 
 mime@1.3.4:
   version "1.3.4"
@@ -2131,6 +2394,10 @@ minimist@1.2.0, minimist@>=0.2.0, minimist@^1.1.0, minimist@^1.2.0:
   resolved mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903
   dependencies:
     minimist "0.0.8"
+
+moment@^2.10.3:
+  version "2.18.1"
+  resolved moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f
 
 mongodb-core@2.1.9:
   version "2.1.9"
@@ -2349,9 +2616,19 @@ npmlog@^4.0.2:
     gauge "~2.7.1"
     set-blocking "~2.0.0"
 
+nth-check@~1.0.1:
+  version "1.0.1"
+  resolved nth-check-1.0.1.tgz#9929acdf628fc2c41098deab82ac580cf149aae4
+  dependencies:
+    boolbase "~1.0.0"
+
 number-is-nan@^1.0.0:
   version "1.0.1"
   resolved number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d
+
+"nwmatcher@>= 1.3.7 < 2.0.0":
+  version "1.3.9"
+  resolved nwmatcher-1.3.9.tgz#8bab486ff7fa3dfd086656bbe8b17116d3692d2a
 
 oauth-sign@~0.8.1:
   version "0.8.2"
@@ -2415,7 +2692,7 @@ opn@4.0.2:
     object-assign "^4.0.1"
     pinkie-promise "^2.0.0"
 
-optionator@^0.8.2:
+optionator@^0.8.1, optionator@^0.8.2:
   version "0.8.2"
   resolved optionator-0.8.2.tgz#364c5e409d3f4d6301d6c0b4c05bba50180aeb64
   dependencies:
@@ -2494,6 +2771,10 @@ parse-json@^2.2.0:
   resolved parse-json-2.2.0.tgz#f480f40434ef80741f8469099f8dea18f55a4dc9
   dependencies:
     error-ex "^1.2.0"
+
+parse5@^1.5.1:
+  version "1.5.1"
+  resolved parse5-1.5.1.tgz#9b7f3b0de32be78dc2401b17573ccaf0f6f59d94
 
 parsejson@0.0.3:
   version "0.0.3"
@@ -2587,6 +2868,19 @@ pkg-config@^1.1.0:
 pluralize@^1.2.1:
   version "1.2.1"
   resolved pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45
+
+popsicle@^6.2.0:
+  version "6.2.2"
+  resolved popsicle-6.2.2.tgz#e273c8bd48181f73a59b199e2a5e25b692b3e237
+  dependencies:
+    any-promise "^1.3.0"
+    arrify "^1.0.0"
+    concat-stream "^1.4.7"
+    form-data "^0.2.0"
+    make-error-cause "^1.0.1"
+    throwback "^1.1.0"
+    tough-cookie "^2.0.0"
+    xtend "^4.0.0"
 
 prelude-ls@~1.1.2:
   version "1.1.2"
@@ -2697,7 +2991,20 @@ read-all-stream@^3.0.0:
     pinkie-promise "^2.0.0"
     readable-stream "^2.0.0"
 
+<<<<<<< HEAD
 readable-stream@2.1.5:
+=======
+readable-stream@1.1:
+  version "1.1.13"
+  resolved readable-stream-1.1.13.tgz#f6eef764f514c89e2b9e23146a75ba106756d23e
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.1"
+    isarray "0.0.1"
+    string_decoder "~0.10.x"
+
+readable-stream@2.1.5, readable-stream@^2.0.2:
+>>>>>>> master
   version "2.1.5"
   resolved readable-stream-2.1.5.tgz#66fa8b720e1438b364681f2ad1a63c618448c9d0
   dependencies:
@@ -2785,7 +3092,7 @@ repeating@^1.1.2:
   dependencies:
     is-finite "^1.0.0"
 
-request@^2.81.0:
+request@^2.55.0, request@^2.81.0:
   version "2.81.0"
   resolved request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0
   dependencies:
@@ -2897,6 +3204,10 @@ rx@^4.1.0:
 safe-buffer@^5.0.1:
   version "5.0.1"
   resolved safe-buffer-5.0.1.tgz#d263ca54696cd8a306b5ca6551e92de57918fbe7
+
+sax@^1.1.4:
+  version "1.2.2"
+  resolved sax-1.2.2.tgz#fd8631a23bc7826bef5d871bdb87378c95647828
 
 seek-bzip@^1.0.5:
   version "1.0.5"
@@ -3021,6 +3332,12 @@ socket.io-parser@2.3.1:
     debug "2.2.0"
     isarray "0.0.1"
     json3 "3.3.2"
+
+source-map@~0.2.0:
+  version "0.2.0"
+  resolved source-map-0.2.0.tgz#dab73fbcfc2ba819b4de03bd6f6eaa48164b3f9d
+  dependencies:
+    amdefine ">=0.0.4"
 
 split-array@1.0.1:
   version "1.0.1"
@@ -3176,6 +3493,10 @@ supports-color@^2.0.0:
   version "2.0.0"
   resolved supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7
 
+"symbol-tree@>= 3.1.0 < 4.0.0":
+  version "3.2.2"
+  resolved symbol-tree-3.2.2.tgz#ae27db38f660a7ae2e1c3b7d1bc290819b8519e6
+
 sync-exec@~0.6.x:
   version "0.6.2"
   resolved sync-exec-0.6.2.tgz#717d22cc53f0ce1def5594362f3a89a2ebb91105
@@ -3247,6 +3568,12 @@ through@2, through@^2.3.6, through@~2.3, through@~2.3.1, through@~2.3.4:
   version "2.3.8"
   resolved through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5
 
+throwback@^1.1.0:
+  version "1.1.1"
+  resolved throwback-1.1.1.tgz#f007e7c17604a6d16d7a07c41aa0e8fedc6184a4
+  dependencies:
+    any-promise "^1.3.0"
+
 timed-out@^2.0.0:
   version "2.0.0"
   resolved timed-out-2.0.0.tgz#f38b0ae81d3747d628001f41dafc652ace671c0a
@@ -3254,6 +3581,10 @@ timed-out@^2.0.0:
 timed-out@^4.0.0:
   version "4.0.1"
   resolved timed-out-4.0.1.tgz#f32eacac5a175bea25d7fab565ab3ed8741ef56f
+
+title-case-minors@^1.0.0:
+  version "1.0.0"
+  resolved title-case-minors-1.0.0.tgz#51f17037c294747a1d1cda424b5004c86d8eb115
 
 tmp-promise@1.0.3:
   version "1.0.3"
@@ -3272,17 +3603,52 @@ to-array@0.1.4:
   version "0.1.4"
   resolved to-array-0.1.4.tgz#17e6c11f73dd4f3d74cda7a4ff3238e9ad9bf890
 
+to-capital-case@^1.0.0:
+  version "1.0.0"
+  resolved to-capital-case-1.0.0.tgz#a57c5014fd5a37217cf05099ff8a421bbf9c9b7f
+  dependencies:
+    to-space-case "^1.0.0"
+
+to-no-case@^1.0.0:
+  version "1.0.2"
+  resolved to-no-case-1.0.2.tgz#c722907164ef6b178132c8e69930212d1b4aa16a
+
+to-sentence-case@^1.0.0:
+  version "1.0.0"
+  resolved to-sentence-case-1.0.0.tgz#c483bf3647737e5c738ef7006fe360d5f99c572e
+  dependencies:
+    to-no-case "^1.0.0"
+
+to-space-case@^1.0.0:
+  version "1.0.0"
+  resolved to-space-case-1.0.0.tgz#b052daafb1b2b29dc770cea0163e5ec0ebc9fc17
+  dependencies:
+    to-no-case "^1.0.0"
+
+to-title-case@^1.0.0:
+  version "1.0.0"
+  resolved to-title-case-1.0.0.tgz#aca88f89d6064de50108a97cea0db44827e80061
+  dependencies:
+    escape-regexp-component "^1.0.2"
+    title-case-minors "^1.0.0"
+    to-capital-case "^1.0.0"
+    to-sentence-case "^1.0.0"
+
 touch@1.0.0:
   version "1.0.0"
   resolved touch-1.0.0.tgz#449cbe2dbae5a8c8038e30d71fa0ff464947c4de
   dependencies:
     nopt "~1.0.10"
 
-tough-cookie@~2.3.0:
+tough-cookie@^2.0.0, tough-cookie@^2.2.0, tough-cookie@~2.3.0:
   version "2.3.2"
   resolved tough-cookie-2.3.2.tgz#f081f76e4c85720e6c37a5faced737150d84072a
   dependencies:
     punycode "^1.4.1"
+
+tr46@~0.0.1:
+  version "0.0.3"
+  resolved tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a
 
 trim-repeated@^1.0.0:
   version "1.0.0"
@@ -3393,6 +3759,12 @@ url-parse-lax@^1.0.0:
   dependencies:
     prepend-http "^1.0.1"
 
+url-regex@^4.0.0:
+  version "4.0.0"
+  resolved url-regex-4.0.0.tgz#eb48fbaf380fbf4c952c76ebd2d2ce00f9b4ca32
+  dependencies:
+    ip-regex "^1.0.1"
+
 user-home@^2.0.0:
   version "2.0.0"
   resolved user-home-2.0.0.tgz#9c70bfd8169bc1dcbf48604e0f04b8b49cde9e9f
@@ -3428,6 +3800,16 @@ verror@1.3.6:
 vlq@^0.2.1:
   version "0.2.1"
   resolved vlq-0.2.1.tgz#14439d711891e682535467f8587c5630e4222a6c
+
+webidl-conversions@^2.0.0:
+  version "2.0.1"
+  resolved webidl-conversions-2.0.1.tgz#3bf8258f7d318c7443c36f2e169402a1a6703506
+
+whatwg-url-compat@~0.6.5:
+  version "0.6.5"
+  resolved whatwg-url-compat-0.6.5.tgz#00898111af689bb097541cd5a45ca6c8798445bf
+  dependencies:
+    tr46 "~0.0.1"
 
 which@^1.2.8, which@^1.2.9:
   version "1.2.14"
@@ -3489,6 +3871,10 @@ xdg-basedir@^2.0.0:
 xdg-basedir@^3.0.0:
   version "3.0.0"
   resolved xdg-basedir-3.0.0.tgz#496b2cc109eca8dbacfe2dc72b603c17c5870ad4
+
+"xml-name-validator@>= 2.0.1 < 3.0.0":
+  version "2.0.1"
+  resolved xml-name-validator-2.0.1.tgz#4d8b8f1eccd3419aa362061becef515e1e559635
 
 xmlhttprequest-ssl@1.5.3:
   version "1.5.3"
