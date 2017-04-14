@@ -34,8 +34,8 @@ GET /api/links/filter/
 - It fetches all the links with date range filters
 - It takes following query parameters
   - page: Number greater than 0 (defaults to 1)
-  - start: timestamp of starting date range
-  - end: timestamp of ending date range
+  - start: unix timestamp(in milliseconds) of starting date range
+  - end: unix timestamp(in milliseconds) of ending date range
   - sort: 1 or -1
   - search: keyword to be searched
 - Example
