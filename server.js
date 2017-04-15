@@ -8,6 +8,8 @@ const authenticate = require('./middlewares/authenticate')
 const http = require('http')
 const url = require('url')
 const express = require('express')
+const bodyParser = require('body-parser')
+var cors = require('cors')
 const app = express()
 const RateLimit = require('express-rate-limit')
 
@@ -25,7 +27,11 @@ var apiLimiter = new RateLimit({
   delayMs: 0 // disabled
 })
 
+app.use(bodyParser.json())
+
 app.use('/api/', apiLimiter)
+
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.status(404).send('Not Found')
@@ -225,7 +231,14 @@ const redirectWithQueryString = (
   data,
   appRedirectUrl = 'https://linklet.ml'
 ) => {
-  const location = `${appRedirectUrl}?${querystring.stringify(data)}`
+  const urlData = url.parse(appRedirectUrl, true)
+  if (!_.isEmpty(urlData.query) && urlData.query.next) {
+    data.next = urlData.query.next
+    appRedirectUrl = `${appRedirectUrl.split('?')[0]}?${querystring.stringify(data)}`
+  } else {
+    appRedirectUrl = `${appRedirectUrl}?${querystring.stringify(data)}`
+  }
+  const location = appRedirectUrl
   res.redirect(302, location)
 }
 
@@ -244,6 +257,7 @@ app.get('/api/github/callback', async (req, res) => {
   let appRedirectUrl
   let actualState
   res.header('Content-Type', 'text/html')
+  console.log(state, code)
   if (!code && !state) {
     redirectWithQueryString(res, {
       error: 'Provide code and state query param'
@@ -431,7 +445,8 @@ app.get('/api/links/me/filter', authenticate, (req, res) => {
 
 app.post('/api/links', authenticate, (req, res) => {
   const { _id } = req.user
-  let data = _.pick(req.params, [
+  console.log(req.body)
+  let data = _.pick(req.body, [
     'url',
     'author',
     'date',
@@ -440,6 +455,7 @@ app.post('/api/links', authenticate, (req, res) => {
     'title',
     'publisher'
   ])
+  console.log(data)
   data = Object.assign({}, data, {
     timestamp: new Date().getTime(),
     _creator: _id

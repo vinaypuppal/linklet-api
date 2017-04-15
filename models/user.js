@@ -56,7 +56,7 @@ UserSchema.methods.toJSON = function () {
   const user = this
   // convert user to object
   const userObj = user.toObject()
-  return _.pick(userObj, [ '_id', 'username', 'avatarUrl' ])
+  return _.pick(userObj, [ '_id', 'username', 'avatarUrl', 'email', 'name' ])
 }
 
 // model methods

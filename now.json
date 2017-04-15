@@ -1,6 +1,6 @@
 {
-	"name": "fcc-hyd-links-api",
-	"alias": ["api.links.linklet.ml"],
+	"name": "linklet-api",
+	"alias": ["cors.linklet.ml"],
 	"env": {
 		"NODE_ENV": "production",
 		"MONGO_URL": "@fcc-hyd-links-mlab"
