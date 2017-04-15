@@ -1,5 +1,6 @@
 require('./config')
 require('./mongoose')
+require('now-logs')('linklet-cors')
 const Link = require('./models/link')
 const User = require('./models/user')
 const authenticate = require('./middlewares/authenticate')
@@ -222,7 +223,11 @@ const loginUser = async accessToken => {
   return user.save().then(() => user.generateAuthToken())
 }
 
-const redirectWithQueryString = (res, data, appRedirectUrl = 'https://linklet.ml') => {
+const redirectWithQueryString = (
+  res,
+  data,
+  appRedirectUrl = 'https://linklet.ml'
+) => {
   const location = `${appRedirectUrl}?${querystring.stringify(data)}`
   res.redirect(302, location)
 }
@@ -231,6 +236,7 @@ app.get('/api/login/github', async (req, res) => {
   const { appRedirectUrl } = req.query
   const state = await uid(20)
   states.push({ state, appRedirectUrl })
+  console.log(states)
   res.redirect(
     302,
     `https://${githubUrl}/login/oauth/authorize?scope=user:email&client_id=${process.env.GH_CLIENT_ID}&state=${state}`
@@ -241,18 +247,23 @@ app.get('/api/github/callback', async (req, res) => {
   const { state, code } = req.query
   let appRedirectUrl
   let actualState
+  console.log(states)
   res.header('Content-Type', 'text/html')
+  console.log(state, code)
   if (!code && !state) {
-    redirectWithQueryString(
-      res,
-      { error: 'Provide code and state query param' }
-    )
+    redirectWithQueryString(res, {
+      error: 'Provide code and state query param'
+    })
   } else if (!states.filter(item => item.state === state)[0]) {
     actualState = states.filter(item => item.state === state)
     appRedirectUrl = actualState[0].appRedirectUrl
+    console.log('ohh', appRedirectUrl)
     redirectWithQueryString(res, { error: 'Unknown state' }, appRedirectUrl)
   } else {
+    actualState = states.filter(item => item.state === state)
+    appRedirectUrl = actualState[0].appRedirectUrl
     _.remove(states, actualState)
+    console.log(appRedirectUrl)
     try {
       const { status, data } = await axios({
         method: 'POST',
@@ -275,7 +286,11 @@ app.get('/api/github/callback', async (req, res) => {
           )
         } else {
           const loginToken = await loginUser(qs.access_token)
-          redirectWithQueryString(res, { token: loginToken }, appRedirectUrl)
+          redirectWithQueryString(
+            res,
+            { loginToken: loginToken },
+            appRedirectUrl
+          )
         }
       } else {
         redirectWithQueryString(

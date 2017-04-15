@@ -14,8 +14,8 @@
   "author": "Vinay Puppal <me@vinaypuppal.com> (https://www.vinaypuppal.com/)",
   "license": "MIT",
   "dependencies": {
-    "cors": "^2.8.3",
     "axios": "^0.16.1",
+    "cors": "^2.8.3",
     "date-fns": "^1.28.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
@@ -24,6 +24,7 @@
     "lodash": "^4.17.4",
     "metascraper": "^1.0.6",
     "mongoose": "^4.9.1",
+    "now-logs": "^0.0.7",
     "qs": "^6.4.0",
     "uid-promise": "^0.1.0",
     "url-regex": "^4.0.0"
