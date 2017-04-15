@@ -1,5 +1,6 @@
 require('./config')
 require('./mongoose')
+require('now-logs')('linklet-api')
 const Link = require('./models/link')
 const User = require('./models/user')
 const authenticate = require('./middlewares/authenticate')
@@ -238,6 +239,7 @@ app.get('/api/github/callback', async (req, res) => {
   const { state, code } = req.query
   const actualState = states.filter(item => item.state === state)
   const appRedirectUrl = actualState[0].appRedirectUrl
+  console.log(state, code, appRedirectUrl)
   res.header('Content-Type', 'text/html')
   if (!code && !state) {
     redirectWithQueryString(
@@ -271,6 +273,7 @@ app.get('/api/github/callback', async (req, res) => {
           )
         } else {
           const loginToken = await loginUser(qs.access_token)
+          console.log(loginToken)
           redirectWithQueryString(res, { token: loginToken }, appRedirectUrl)
         }
       } else {
