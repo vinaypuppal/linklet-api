@@ -39,7 +39,7 @@ const UserSchema = new Schema({
 UserSchema.methods.generateAuthToken = function () {
   const user = this
   const access = 'auth'
-  return uid(20)
+  return uid(24)
     .then(token => {
       user.tokens.push({ access, token })
       return user.save().then(() => token)
