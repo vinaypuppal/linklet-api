@@ -230,15 +230,17 @@ const redirectWithQueryString = (res, data, appRedirectUrl) => {
 app.get('/api/login/github', async (req, res) => {
   const { appRedirectUrl } = req.query
   const state = await uid(20)
-  states.push(state)
+  states.push({ state, appRedirectUrl })
   res.redirect(
     302,
-    `https://${githubUrl}/login/oauth/authorize?scope=user:email&client_id=${process.env.GH_CLIENT_ID}&state=${state}&appRedirectUrl=${appRedirectUrl}`
+    `https://${githubUrl}/login/oauth/authorize?scope=user:email&client_id=${process.env.GH_CLIENT_ID}&state=${state}`
   )
 })
 
-app.get('/api/login/github/callback', async (req, res) => {
-  const { appRedirectUrl, state, code } = req.query
+app.get('/api/github/callback', async (req, res) => {
+  const { state, code } = req.query
+  const actualState = states.filter(item => item.state === state)
+  const appRedirectUrl = actualState[0].appRedirectUrl
   res.header('Content-Type', 'text/html')
   if (!code && !state) {
     redirectWithQueryString(
