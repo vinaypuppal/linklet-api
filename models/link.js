@@ -17,7 +17,10 @@ const linkSchema = new Schema({
   description: String,
   image: String,
   publisher: String,
-  title: String
+  title: String,
+  _creator: {
+    type: Schema.Types.ObjectId, ref: 'User'
+  }
 })
 
 linkSchema.index({description: 'text', title: 'text', url: 'text'})

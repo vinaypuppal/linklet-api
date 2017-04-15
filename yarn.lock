@@ -222,6 +222,12 @@ aws4@^1.2.1:
   version "1.6.0"
   resolved aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e
 
+axios@^0.16.1:
+  version "0.16.1"
+  resolved axios-0.16.1.tgz#c0b6d26600842384b8f509e57111f0d2df8223ca
+  dependencies:
+    follow-redirects "^1.2.3"
+
 babel-code-frame@6.22.0, babel-code-frame@^6.16.0:
   version "6.22.0"
   resolved babel-code-frame-6.22.0.tgz#027620bee567a88c32561574e7fd0801d33118e4
@@ -249,6 +255,10 @@ base64-arraybuffer@0.1.5:
 base64-js@0.0.8:
   version "0.0.8"
   resolved base64-js-0.0.8.tgz#1101e9544f4a76b1bc3b26d452ca96d7a35e7978
+
+base64url@2.0.0, base64url@^2.0.0:
+  version "2.0.0"
+  resolved base64url-2.0.0.tgz#eac16e03ea1438eff9423d69baa36262ed1f70bb
 
 bcrypt-pbkdf@^1.0.0:
   version "1.0.1"
@@ -340,6 +350,11 @@ buffer-crc32@~0.2.3:
   resolved buffer-crc32-0.2.13.tgz#0d333e3f00eac50aa1454abd30ef8c2a5d9a7242
 
 buffer-shims@^1.0.0, buffer-shims@~1.0.0:
+buffer-equal-constant-time@1.0.1:
+  version "1.0.1"
+  resolved buffer-equal-constant-time-1.0.1.tgz#f8e71132f7ffe6e01a5c9697a4c6f3e48d5cc819
+
+buffer-shims@^1.0.0:
   version "1.0.0"
   resolved buffer-shims-1.0.0.tgz#9978ce317388c649ad8793028c3477ef044a8b51
 
@@ -688,6 +703,7 @@ debug@2.3.3:
     ms "0.7.2"
 
 debug@2.6.1:
+debug@2.6.1, debug@^2.2.0, debug@^2.4.5:
   version "2.6.1"
   resolved debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351
   dependencies:
@@ -863,7 +879,7 @@ dot-prop@^4.1.0:
   dependencies:
     is-obj "^1.0.0"
 
-dotenv@4.0.0:
+dotenv@4.0.0, dotenv@^4.0.0:
   version "4.0.0"
   resolved dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d
 
@@ -901,6 +917,13 @@ ecc-jsbn@~0.1.1:
   resolved ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505
   dependencies:
     jsbn "~0.1.0"
+
+ecdsa-sig-formatter@1.0.9:
+  version "1.0.9"
+  resolved ecdsa-sig-formatter-1.0.9.tgz#4bc926274ec3b5abb5016e7e1d60921ac262b2a1
+  dependencies:
+    base64url "^2.0.0"
+    safe-buffer "^5.0.1"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -1401,6 +1424,12 @@ flow-parser@0.40.0:
     ast-types "0.8.18"
     colors ">=0.6.2"
     minimist ">=0.2.0"
+
+follow-redirects@^1.2.3:
+  version "1.2.3"
+  resolved follow-redirects-1.2.3.tgz#01abaeca85e3609837d9fcda3167a7e42fdaca21
+  dependencies:
+    debug "^2.4.5"
 
 for-in@^1.0.1:
   version "1.0.2"
@@ -1986,6 +2015,10 @@ isarray@1.0.0, isarray@^1.0.0, isarray@~1.0.0:
   version "1.0.0"
   resolved isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11
 
+isemail@1.x.x:
+  version "1.2.0"
+  resolved isemail-1.2.0.tgz#be03df8cc3e29de4d2c5df6501263f1fa4595e9a
+
 isexe@^2.0.0:
   version "2.0.0"
   resolved isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10
@@ -2021,6 +2054,15 @@ jodid25519@^1.0.0:
   resolved jodid25519-1.0.2.tgz#06d4912255093419477d425633606e0e90782967
   dependencies:
     jsbn "~0.1.0"
+
+joi@^6.10.1:
+  version "6.10.1"
+  resolved joi-6.10.1.tgz#4d50c318079122000fe5f16af1ff8e1917b77e06
+  dependencies:
+    hoek "2.x.x"
+    isemail "1.x.x"
+    moment "2.x.x"
+    topo "1.x.x"
 
 js-tokens@^3.0.0:
   version "3.0.1"
@@ -2089,6 +2131,16 @@ jsonpointer@^4.0.0:
   version "4.0.1"
   resolved jsonpointer-4.0.1.tgz#4fd92cb34e0e9db3c89c8622ecf51f9b978c6cb9
 
+jsonwebtoken@^7.3.0:
+  version "7.3.0"
+  resolved jsonwebtoken-7.3.0.tgz#85118d6a70e3fccdf14389f4e7a1c3f9c8a9fbba
+  dependencies:
+    joi "^6.10.1"
+    jws "^3.1.4"
+    lodash.once "^4.0.0"
+    ms "^0.7.1"
+    xtend "^4.0.1"
+
 jsprim@^1.2.2:
   version "1.4.0"
   resolved jsprim-1.4.0.tgz#a3b87e40298d8c380552d8cc7628a0bb95a22918
@@ -2103,6 +2155,23 @@ jsx-ast-utils@^1.3.4:
   resolved jsx-ast-utils-1.4.0.tgz#5afe38868f56bc8cc7aeaef0100ba8c75bd12591
   dependencies:
     object-assign "^4.1.0"
+
+jwa@^1.1.4:
+  version "1.1.5"
+  resolved jwa-1.1.5.tgz#a0552ce0220742cd52e153774a32905c30e756e5
+  dependencies:
+    base64url "2.0.0"
+    buffer-equal-constant-time "1.0.1"
+    ecdsa-sig-formatter "1.0.9"
+    safe-buffer "^5.0.1"
+
+jws@^3.1.4:
+  version "3.1.4"
+  resolved jws-3.1.4.tgz#f9e8b9338e8a847277d6444b1464f61880e050a2
+  dependencies:
+    base64url "^2.0.0"
+    jwa "^1.1.4"
+    safe-buffer "^5.0.1"
 
 kareem@1.2.1:
   version "1.2.1"
@@ -2227,11 +2296,15 @@ lodash.merge@4.6.x:
   version "4.6.0"
   resolved lodash.merge-4.6.0.tgz#69884ba144ac33fe699737a6086deffadd0f89c5
 
+lodash.once@^4.0.0:
+  version "4.1.1"
+  resolved lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac
+
 lodash.restparam@^3.0.0:
   version "3.6.1"
   resolved lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805
 
-lodash@^4.0.0, lodash@^4.1.0, lodash@^4.14.0, lodash@^4.3.0:
+lodash@^4.0.0, lodash@^4.1.0, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.3.0:
   version "4.17.4"
   resolved lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae
 
@@ -2361,7 +2434,7 @@ minimist@1.2.0, minimist@>=0.2.0, minimist@^1.1.0, minimist@^1.2.0:
   dependencies:
     minimist "0.0.8"
 
-moment@^2.10.3:
+moment@2.x.x, moment@^2.10.3:
   version "2.18.1"
   resolved moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f
 
@@ -2418,7 +2491,7 @@ ms@0.7.1:
   version "0.7.1"
   resolved ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098
 
-ms@0.7.2:
+ms@0.7.2, ms@^0.7.1:
   version "0.7.2"
   resolved ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765
 
@@ -2918,7 +2991,7 @@ punycode@^1.4.1:
   version "1.4.1"
   resolved punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e
 
-qs@6.4.0, qs@~6.4.0:
+qs@6.4.0, qs@^6.4.0, qs@~6.4.0:
   version "6.4.0"
   resolved qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233
 
@@ -2981,6 +3054,8 @@ readable-stream@2.1.5:
 readable-stream@^2.0.0, "readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@^2.1.4, readable-stream@^2.2.2:
   version "2.2.9"
   resolved readable-stream-2.2.9.tgz#cf78ec6f4a6d1eb43d26488cac97f042e74b7fc8
+  version "2.2.6"
+  resolved readable-stream-2.2.6.tgz#8b43aed76e71483938d12a8d46c6cf1a00b1f816
   dependencies:
     buffer-shims "~1.0.0"
     core-util-is "~1.0.0"
@@ -3596,6 +3671,12 @@ to-title-case@^1.0.0:
     to-capital-case "^1.0.0"
     to-sentence-case "^1.0.0"
 
+topo@1.x.x:
+  version "1.1.0"
+  resolved topo-1.1.0.tgz#e9d751615d1bb87dc865db182fa1ca0a5ef536d5
+  dependencies:
+    hoek "2.x.x"
+
 touch@1.0.0:
   version "1.0.0"
   resolved touch-1.0.0.tgz#449cbe2dbae5a8c8038e30d71fa0ff464947c4de
@@ -3656,6 +3737,10 @@ typedarray@^0.0.6:
 uid-number@^0.0.6:
   version "0.0.6"
   resolved uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81
+
+uid-promise@^0.1.0:
+  version "0.1.0"
+  resolved uid-promise-0.1.0.tgz#b53236bedce7c8322a017ee7c652e8665ec8fa4a
 
 ultron@1.0.x:
   version "1.0.2"
