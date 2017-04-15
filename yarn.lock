@@ -300,6 +300,21 @@ bluebird@^3.3.1:
   version "3.5.0"
   resolved bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c
 
+body-parser@^1.17.1:
+  version "1.17.1"
+  resolved body-parser-1.17.1.tgz#75b3bc98ddd6e7e0d8ffe750dfaca5c66993fa47
+  dependencies:
+    bytes "2.4.0"
+    content-type "~1.0.2"
+    debug "2.6.1"
+    depd "~1.1.0"
+    http-errors "~1.6.1"
+    iconv-lite "0.4.15"
+    on-finished "~2.3.0"
+    qs "6.4.0"
+    raw-body "~2.2.0"
+    type-is "~1.6.14"
+
 boolbase@~1.0.0:
   version "1.0.0"
   resolved boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e
@@ -349,7 +364,7 @@ buffer-equal-constant-time@1.0.1:
   version "1.0.1"
   resolved buffer-equal-constant-time-1.0.1.tgz#f8e71132f7ffe6e01a5c9697a4c6f3e48d5cc819
 
-buffer-shims@^1.0.0, buffer-shims@~1.0.0:
+buffer-shims@^1.0.0:
   version "1.0.0"
   resolved buffer-shims-1.0.0.tgz#9978ce317388c649ad8793028c3477ef044a8b51
 
@@ -364,6 +379,10 @@ buffer@^3.0.1:
 builtin-modules@^1.0.0:
   version "1.1.1"
   resolved builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f
+
+bytes@2.4.0:
+  version "2.4.0"
+  resolved bytes-2.4.0.tgz#7d97196f9d5baf7f6935e25985549edd2a6c2339
 
 bytes@2.5.0:
   version "2.5.0"
@@ -1770,7 +1789,7 @@ http-signature@~1.1.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
-iconv-lite@^0.4.8, iconv-lite@~0.4.13:
+iconv-lite@0.4.15, iconv-lite@^0.4.8, iconv-lite@~0.4.13:
   version "0.4.15"
   resolved iconv-lite-0.4.15.tgz#fe265a218ac6a57cfe854927e9d04c19825eddeb
 
@@ -3124,6 +3143,14 @@ range-parser@~1.2.0:
   version "1.2.0"
   resolved range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e
 
+raw-body@~2.2.0:
+  version "2.2.0"
+  resolved raw-body-2.2.0.tgz#994976cf6a5096a41162840492f0bdc5d6e7fb96
+  dependencies:
+    bytes "2.4.0"
+    iconv-lite "0.4.15"
+    unpipe "1.0.0"
+
 rc@^1.0.1, rc@^1.1.2, rc@^1.1.6, rc@^1.1.7:
   version "1.2.1"
   resolved rc-1.2.1.tgz#2e03e8e42ee450b8cb3dce65be1bf8974e1dfd95
@@ -3615,12 +3642,6 @@ string_decoder@~0.10.x:
   version "0.10.31"
   resolved string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94
 
-string_decoder@~1.0.0:
-  version "1.0.0"
-  resolved string_decoder-1.0.0.tgz#f06f41157b664d86069f84bdbdc9b0d8ab281667
-  dependencies:
-    buffer-shims "~1.0.0"
-
 stringstream@~0.0.4:
   version "0.0.5"
   resolved stringstream-0.0.5.tgz#4e484cd4de5a0bbbee18e46307710a8a81621878
@@ -3922,7 +3943,7 @@ unique-string@^1.0.0:
   dependencies:
     crypto-random-string "^1.0.0"
 
-unpipe@~1.0.0:
+unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
   resolved unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec
 

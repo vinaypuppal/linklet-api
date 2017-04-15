@@ -22,7 +22,11 @@ const authenticate = (req, res, next) => {
       next()
     })
     .catch(() => {
-      redirectWithQueryString(res, { error: 'No user found' }, appRedirectUrl)
+      if (appRedirectUrl) {
+        redirectWithQueryString(res, { error: 'No user found' }, appRedirectUrl)
+      } else {
+        res.status(400).send({message: 'x-auth token not found'})
+      }
     })
 }
 
