@@ -220,7 +220,11 @@ const loginUser = async accessToken => {
   return user.save().then(() => user.generateAuthToken())
 }
 
-const redirectWithQueryString = (res, data, appRedirectUrl) => {
+const redirectWithQueryString = (
+  res,
+  data,
+  appRedirectUrl = 'https://linklet.ml'
+) => {
   const location = `${appRedirectUrl}?${querystring.stringify(data)}`
   res.redirect(302, location)
 }
@@ -237,20 +241,21 @@ app.get('/api/login/github', async (req, res) => {
 
 app.get('/api/github/callback', async (req, res) => {
   const { state, code } = req.query
-  const actualState = states.filter(item => item.state === state)
-  const appRedirectUrl = actualState[0].appRedirectUrl
-  console.log(state, code, appRedirectUrl)
+  let appRedirectUrl
+  let actualState
   res.header('Content-Type', 'text/html')
   if (!code && !state) {
-    redirectWithQueryString(
-      res,
-      { error: 'Provide code and state query param' },
-      appRedirectUrl
-    )
-  } else if (!states.includes(state)) {
+    redirectWithQueryString(res, {
+      error: 'Provide code and state query param'
+    })
+  } else if (!states.filter(item => item.state === state)[0]) {
+    actualState = states.filter(item => item.state === state)
+    appRedirectUrl = actualState[0].appRedirectUrl
     redirectWithQueryString(res, { error: 'Unknown state' }, appRedirectUrl)
   } else {
-    states.splice(states.indexOf(state), 1)
+    actualState = states.filter(item => item.state === state)
+    appRedirectUrl = actualState[0].appRedirectUrl
+    _.remove(states, actualState)
     try {
       const { status, data } = await axios({
         method: 'POST',
@@ -273,8 +278,11 @@ app.get('/api/github/callback', async (req, res) => {
           )
         } else {
           const loginToken = await loginUser(qs.access_token)
-          console.log(loginToken)
-          redirectWithQueryString(res, { token: loginToken }, appRedirectUrl)
+          redirectWithQueryString(
+            res,
+            { loginToken: loginToken },
+            appRedirectUrl
+          )
         }
       } else {
         redirectWithQueryString(
