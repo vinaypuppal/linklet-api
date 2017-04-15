@@ -1,4 +1,4 @@
-const { User } = require('../models/user')
+const User = require('../models/user')
 const querystring = require('qs')
 
 const redirectWithQueryString = (res, data, appRedirectUrl) => {
