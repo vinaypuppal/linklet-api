@@ -9,7 +9,6 @@ const http = require('http')
 const url = require('url')
 const express = require('express')
 const bodyParser = require('body-parser')
-var cors = require('cors')
 const app = express()
 const RateLimit = require('express-rate-limit')
 
@@ -30,8 +29,6 @@ var apiLimiter = new RateLimit({
 app.use(bodyParser.json())
 
 app.use('/api/', apiLimiter)
-
-app.use(cors())
 
 app.get('/', (req, res) => {
   res.status(404).send('Not Found')
