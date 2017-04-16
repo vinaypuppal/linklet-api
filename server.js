@@ -177,7 +177,7 @@ app.get('/api/metadata/', (req, res) => {
             ) {
               console.log('title')
               return res.status(400).send({
-                message: 'Explicit content warning!. Only education content allowed.'
+                message: 'Explicit content warning!. Only educational content allowed.'
               })
             }
             if (
@@ -186,7 +186,7 @@ app.get('/api/metadata/', (req, res) => {
             ) {
               console.log('desc')
               return res.status(400).send({
-                message: 'Explicit content warning!. Only education content allowed.'
+                message: 'Explicit content warning!. Only educational content allowed.'
               })
             }
             res.send(Object.assign({}, data, { url }))
@@ -200,7 +200,7 @@ app.get('/api/metadata/', (req, res) => {
           })
       } else {
         res.status(400).send({
-          message: 'Explicit content warning!. Only education content allowed.'
+          message: 'Explicit content warning!. Only educational content allowed.'
         })
       }
     })
