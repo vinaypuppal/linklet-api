@@ -20,6 +20,7 @@
     "date-fns": "^1.28.1",
     "domain-name-parser": "^2.3.0",
     "dotenv": "^4.0.0",
+    "escape-string-regexp": "^1.0.5",
     "express": "^4.15.2",
     "express-rate-limit": "^2.6.0",
     "is-porn": "^0.9.0",

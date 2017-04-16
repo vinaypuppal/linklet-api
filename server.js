@@ -6,7 +6,7 @@ const User = require('./models/user')
 const authenticate = require('./middlewares/authenticate')
 
 const http = require('http')
-const url = require('url')
+const urlParser = require('url')
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
@@ -14,6 +14,7 @@ const RateLimit = require('express-rate-limit')
 
 const addDays = require('date-fns/add_days')
 const urlRegex = require('url-regex')
+const escapeStringRegexp = require('escape-string-regexp')
 const domainParser = require('domain-name-parser')
 const isPorn = require('is-porn')
 const uid = require('uid-promise')
@@ -21,6 +22,8 @@ const axios = require('axios')
 const querystring = require('qs')
 const _ = require('lodash')
 const { scrapeUrl } = require('metascraper')
+
+const expletives = require('./expletives.json')
 
 var apiLimiter = new RateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -138,6 +141,10 @@ app.get('/api/links/filter/', (req, res) => {
   }
 })
 
+function wordInString (s, word) {
+  return new RegExp('\\b' + escapeStringRegexp(word) + '\\b', 'i').test(s)
+}
+
 app.get('/api/metadata/', (req, res) => {
   let { url } = req.query
   if (!url) {
@@ -145,37 +152,56 @@ app.get('/api/metadata/', (req, res) => {
       message: 'Please Provide URL!...'
     })
   }
+  if (url && !/^https?:\/\//i.test(url)) {
+    url = 'http://' + url
+  }
   if (!urlRegex().test(url)) {
     return res.status(400).send({
       message: 'Please Provide Valid URL!...'
     })
   }
-  if (url && !/^https?:\/\//i.test(url)) {
-    url = 'http://' + url
-  }
+  const urlHostName = urlParser.parse(url).hostname
   try {
-    const domain = domainParser(url).domainName
+    const domain = domainParser(urlHostName).domainName
     console.log(domain)
     isPorn(domain, function (error, status) {
       if (error) return res.status(500).send({ message: 'Request Timeout' })
       console.log('status', status)
       if (!status) {
+        console.log('Fetching Data')
         scrapeUrl(url)
           .then(data => {
+            const { title, description } = data
+            if (
+              title && !expletives.every(word => !wordInString(title, word))
+            ) {
+              console.log('title')
+              return res.status(400).send({
+                message: 'It seems like this link contains Sexually explicit material so not allowed!...'
+              })
+            }
+            if (
+              description &&
+              !expletives.every(word => !wordInString(description, word))
+            ) {
+              console.log('desc')
+              return res.status(400).send({
+                message: 'It seems like this link contains Sexually explicit material so not allowed!...'
+              })
+            }
             res.send(Object.assign({}, data, { url }))
           })
           .catch(e => {
+            console.log(e)
             res.status(400).send({
               message: `Scraping the open graph data from ${url} failed.`,
               suggestion: 'Make sure your URL is correct and the webpage has open graph data, meta tags or twitter card data.'
             })
           })
       } else {
-        res
-          .status(400)
-          .send({
-            message: 'It seems like this link contains Sexually explicit material so not allowed!...'
-          })
+        res.status(400).send({
+          message: 'It seems like this link contains Sexually explicit material so not allowed!...'
+        })
       }
     })
   } catch (e) {
@@ -185,7 +211,7 @@ app.get('/api/metadata/', (req, res) => {
 
 app.get('/api/proxy/:imgUrl(*)', (proxyReq, proxyResp) => {
   const { imgUrl } = proxyReq.params
-  const destParams = url.parse(imgUrl)
+  const destParams = urlParser.parse(imgUrl)
 
   const reqOptions = {
     host: destParams.host,
@@ -248,7 +274,7 @@ const redirectWithQueryString = (
   data,
   appRedirectUrl = 'https://linklet.ml'
 ) => {
-  const urlData = url.parse(appRedirectUrl, true)
+  const urlData = urlParser.parse(appRedirectUrl, true)
   if (!_.isEmpty(urlData.query) && urlData.query.next) {
     data.next = urlData.query.next
     appRedirectUrl = `${appRedirectUrl.split('?')[0]}?${querystring.stringify(data)}`
