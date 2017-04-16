@@ -276,6 +276,10 @@ binary-extensions@^1.0.0:
   version "1.8.0"
   resolved binary-extensions-1.8.0.tgz#48ec8d16df4377eae5fa5884682480af4d95c774
 
+"binaryheap@>= 0.0.3":
+  version "0.0.3"
+  resolved binaryheap-0.0.3.tgz#0d6136c84e9f1a5a90c0b97178c3e00df59820d6
+
 bl@^1.0.0:
   version "1.2.0"
   resolved bl-1.2.0.tgz#1397e7ec42c5f5dc387470c500e34a9f6be9ea98
@@ -375,6 +379,12 @@ buffer@^3.0.1:
     base64-js "0.0.8"
     ieee754 "^1.1.4"
     isarray "^1.0.0"
+
+"buffercursor@>= 0.0.12":
+  version "0.0.12"
+  resolved buffercursor-0.0.12.tgz#78a9a7f4343ae7d820a8999acc80de591e25a779
+  dependencies:
+    verror "^1.4.0"
 
 builtin-modules@^1.0.0:
   version "1.1.1"
@@ -628,7 +638,7 @@ copy-paste@1.3.0:
   optionalDependencies:
     sync-exec "~0.6.x"
 
-core-util-is@~1.0.0:
+core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7
 
@@ -732,7 +742,7 @@ debug@2.3.3:
   dependencies:
     ms "0.7.2"
 
-debug@2.6.1, debug@^2.2.0, debug@^2.4.5:
+debug@2.6.1, debug@^2.2.0, debug@^2.4.5, debug@^2.6.1:
   version "2.6.1"
   resolved debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351
   dependencies:
@@ -884,6 +894,10 @@ dom-serializer@0, dom-serializer@~0.1.0:
   dependencies:
     domelementtype "~1.1.1"
     entities "~1.1.1"
+
+domain-name-parser@^2.3.0:
+  version "2.3.0"
+  resolved domain-name-parser-2.3.0.tgz#d4a69f2562b652caaf1d2f6375a7b3be5a6c39a4
 
 domelementtype@1, domelementtype@~1.1.1:
   version "1.1.3"
@@ -1354,6 +1368,10 @@ extglob@^0.3.1:
 extsprintf@1.0.2:
   version "1.0.2"
   resolved extsprintf-1.0.2.tgz#e1080e0658e300b06294990cc70e1502235fd550
+
+extsprintf@^1.2.0:
+  version "1.3.0"
+  resolved extsprintf-1.3.0.tgz#96918440e3041a7a414f8c52e3c574eb3c3e1e05
 
 fast-levenshtein@~2.0.4:
   version "2.0.6"
@@ -1882,17 +1900,17 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6
 
-invert-kv@^1.0.0:
-  version "1.0.0"
-  resolved invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6
-
 ip-regex@^1.0.1:
   version "1.0.3"
   resolved ip-regex-1.0.3.tgz#dc589076f659f419c222039a33316f1c7387effd
 
-ipaddr.js@1.3.0:
+ipaddr.js@1.3.0, "ipaddr.js@>= 0.1.1":
   version "1.3.0"
   resolved ipaddr.js-1.3.0.tgz#1e03a52fdad83a8bbb2b25cbf4998b4cffcd3dec
+
+ipaddr.js@~0.1.3:
+  version "0.1.9"
+  resolved ipaddr.js-0.1.9.tgz#a9c78ccc12dc9010f296ab9aef2f61f432d69efa
 
 is-absolute@^0.1.5:
   version "0.1.7"
@@ -2014,6 +2032,13 @@ is-path-inside@^1.0.0:
   resolved is-path-inside-1.0.0.tgz#fc06e5a1683fbda13de667aff717bbc10a48f37f
   dependencies:
     path-is-inside "^1.0.1"
+
+is-porn@^0.9.0:
+  version "0.9.0"
+  resolved is-porn-0.9.0.tgz#04da2ab67ebdbc91f588f5dc5ebc9a4a32f8d713
+  dependencies:
+    debug "^2.6.1"
+    nslookup "^1.1.1"
 
 is-posix-bracket@^0.1.0:
   version "0.1.1"
@@ -2623,6 +2648,28 @@ nan@^2.3.0:
   version "2.6.2"
   resolved nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45
 
+native-dns-cache@~0.0.2:
+  version "0.0.2"
+  resolved native-dns-cache-0.0.2.tgz#ce0998f7fdf6c7990970a33190624b0e98ee959b
+  dependencies:
+    binaryheap ">= 0.0.3"
+    native-dns-packet ">= 0.0.1"
+
+"native-dns-packet@>= 0.0.1", native-dns-packet@~0.1.1:
+  version "0.1.1"
+  resolved native-dns-packet-0.1.1.tgz#97da90570b8438a00194701ce24d011fd3cc109a
+  dependencies:
+    buffercursor ">= 0.0.12"
+    ipaddr.js ">= 0.1.1"
+
+native-dns@~0.7.0:
+  version "0.7.0"
+  resolved native-dns-0.7.0.tgz#df418636f08fb29e8fcb7ef142c822a1588ba5b7
+  dependencies:
+    ipaddr.js "~0.1.3"
+    native-dns-cache "~0.0.2"
+    native-dns-packet "~0.1.1"
+
 natural-compare@^1.4.0:
   version "1.4.0"
   resolved natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7
@@ -2713,14 +2760,6 @@ now-logs@^0.0.7:
     socket.io-client "^1.7.2"
     yargs "^6.5.0"
 
-now-logs@^0.0.7:
-  version "0.0.7"
-  resolved now-logs-0.0.7.tgz#6657b74bea4671e8d213439eb91ea9efc9d2de56
-  dependencies:
-    intercept-stdout "^0.1.2"
-    socket.io-client "^1.7.2"
-    yargs "^6.5.0"
-
 now@^4.10.2:
   version "4.11.1"
   resolved now-4.11.1.tgz#69660a809ee89e5044309d86d49979729eb82302
@@ -2779,6 +2818,12 @@ npmlog@^4.0.2:
     console-control-strings "~1.1.0"
     gauge "~2.7.1"
     set-blocking "~2.0.0"
+
+nslookup@^1.1.1:
+  version "1.1.1"
+  resolved nslookup-1.1.1.tgz#59937f914e8eefd10141e5653f62a0cc951a373b
+  dependencies:
+    native-dns "~0.7.0"
 
 nth-check@~1.0.1:
   version "1.0.1"
@@ -4038,6 +4083,14 @@ verror@1.3.6:
   resolved verror-1.3.6.tgz#cff5df12946d297d2baaefaa2689e25be01c005c
   dependencies:
     extsprintf "1.0.2"
+
+verror@^1.4.0:
+  version "1.9.0"
+  resolved verror-1.9.0.tgz#107a8a2d14c33586fc4bb830057cd2d19ae2a6ee
+  dependencies:
+    assert-plus "^1.0.0"
+    core-util-is "1.0.2"
+    extsprintf "^1.2.0"
 
 vlq@^0.2.1:
   version "0.2.2"

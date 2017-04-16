@@ -14,6 +14,8 @@ const RateLimit = require('express-rate-limit')
 
 const addDays = require('date-fns/add_days')
 const urlRegex = require('url-regex')
+const domainParser = require('domain-name-parser')
+const isPorn = require('is-porn')
 const uid = require('uid-promise')
 const axios = require('axios')
 const querystring = require('qs')
@@ -151,16 +153,34 @@ app.get('/api/metadata/', (req, res) => {
   if (url && !/^https?:\/\//i.test(url)) {
     url = 'http://' + url
   }
-  scrapeUrl(url)
-    .then(data => {
-      res.send(Object.assign({}, data, { url }))
+  try {
+    const domain = domainParser(url).domainName
+    console.log(domain)
+    isPorn(domain, function (error, status) {
+      if (error) return res.status(500).send({ message: 'Request Timeout' })
+      console.log('status', status)
+      if (!status) {
+        scrapeUrl(url)
+          .then(data => {
+            res.send(Object.assign({}, data, { url }))
+          })
+          .catch(e => {
+            res.status(400).send({
+              message: `Scraping the open graph data from ${url} failed.`,
+              suggestion: 'Make sure your URL is correct and the webpage has open graph data, meta tags or twitter card data.'
+            })
+          })
+      } else {
+        res
+          .status(400)
+          .send({
+            message: 'It seems like this link contains Sexually explicit material so not allowed!...'
+          })
+      }
     })
-    .catch(e => {
-      res.status(400).send({
-        message: `Scraping the open graph data from ${url} failed.`,
-        suggestion: 'Make sure your URL is correct and the webpage has open graph data, meta tags or twitter card data.'
-      })
-    })
+  } catch (e) {
+    res.status(400).send({ message: 'Invalid Domain' })
+  }
 })
 
 app.get('/api/proxy/:imgUrl(*)', (proxyReq, proxyResp) => {
