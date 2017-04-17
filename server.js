@@ -516,24 +516,28 @@ app.post('/api/links', authenticate, (req, res) => {
 */
 app.post('/api/subscriptions', (req, res) => {
   const { subscription, subscriptionId } = req.body
-  const notification = new Notification({subscription, subscriptionId})
+  const notification = new Notification({ subscription, subscriptionId })
   notification.save(function (err, users) {
     if (err) {
       return res.json({ Error: err })
     } else {
-      return res.status(201).json({ success: true, message: 'Subscribed successfully.' })
+      return res
+        .status(201)
+        .json({ success: true, message: 'Subscribed successfully.' })
     }
   })
 })
 
 app.delete('/api/subscriptions/:subscriptionId', (req, res) => {
   const { subscriptionId } = req.params
-  User.remove({subscriptionId})
+  User.remove({ subscriptionId })
     .then(() => {
-      res.json({success: true, message: 'Delete Successful'})
+      res.json({ success: true, message: 'Delete Successful' })
     })
     .catch(() => {
-      res.status(404).json({success: false, message: 'User Details Not Found'})
+      res
+        .status(404)
+        .json({ success: false, message: 'User Details Not Found' })
     })
 })
 
