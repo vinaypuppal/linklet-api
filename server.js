@@ -530,11 +530,12 @@ app.post('/api/subscriptions', (req, res) => {
 
 app.delete('/api/subscriptions/:subscriptionId', (req, res) => {
   const { subscriptionId } = req.params
-  User.remove({ subscriptionId })
+  Notification.remove({ subscriptionId })
     .then(() => {
       res.json({ success: true, message: 'Delete Successful' })
     })
-    .catch(() => {
+    .catch(e => {
+      console.log(e)
       res
         .status(404)
         .json({ success: false, message: 'User Details Not Found' })
