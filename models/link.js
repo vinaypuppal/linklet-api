@@ -38,7 +38,7 @@ linkSchema.post('save', function (doc) {
   mongoose.model('User').findOne({_id: doc._creator})
     .then(user => {
       const payLoad = {
-        title: `A New Link is posted by ${user.username}`,
+        title: `${user.username} posted a new link.`,
         body: doc.url
       }
       mongoose.model('Notification').find({})
