@@ -25,6 +25,7 @@ const _ = require('lodash')
 const { scrapeUrl } = require('metascraper')
 
 const expletives = require('./expletives.json')
+const getRedirectedUrl = require('./utils/getRedirectedUrl')
 
 var apiLimiter = new RateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -169,28 +170,38 @@ app.get('/api/metadata/', (req, res) => {
       if (error) return res.status(500).send({ message: 'Request Timeout' })
       console.log('status', status)
       if (!status) {
-        console.log('Fetching Data')
-        scrapeUrl(url)
-          .then(data => {
-            const { title, description } = data
-            if (
-              title && !expletives.every(word => !wordInString(title, word))
-            ) {
-              console.log('title')
-              return res.status(400).send({
-                message: 'Explicit content warning!. Only educational content allowed.'
+        getRedirectedUrl(url)
+          .then(redirectedUrl => {
+            console.log('Fetching Data')
+            scrapeUrl(redirectedUrl)
+              .then(data => {
+                const { title, description } = data
+                if (
+                  title && !expletives.every(word => !wordInString(title, word))
+                ) {
+                  console.log('title')
+                  return res.status(400).send({
+                    message: 'Explicit content warning!. Only educational content allowed.'
+                  })
+                }
+                if (
+                  description &&
+                  !expletives.every(word => !wordInString(description, word))
+                ) {
+                  console.log('desc')
+                  return res.status(400).send({
+                    message: 'Explicit content warning!. Only educational content allowed.'
+                  })
+                }
+                res.send(Object.assign({}, data, { url: redirectedUrl.replace(/\/+$/, '') }))
               })
-            }
-            if (
-              description &&
-              !expletives.every(word => !wordInString(description, word))
-            ) {
-              console.log('desc')
-              return res.status(400).send({
-                message: 'Explicit content warning!. Only educational content allowed.'
+              .catch(e => {
+                console.log(e)
+                res.status(400).send({
+                  message: `Scraping the open graph data from ${url} failed.`,
+                  suggestion: 'Make sure your URL is correct and the webpage has open graph data, meta tags or twitter card data.'
+                })
               })
-            }
-            res.send(Object.assign({}, data, { url }))
           })
           .catch(e => {
             console.log(e)
