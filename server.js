@@ -56,7 +56,7 @@ app.get('/api/links/all/', (req, res) => {
         .sort({ timestamp: sort })
         .then(links =>
           res.send({
-            page,
+            page: +page,
             perPage,
             totalLinks: count,
             isLastPage: perPage * page >= count,
@@ -73,7 +73,7 @@ app.get('/api/links/all/', (req, res) => {
         .sort({ timestamp: sort })
         .then(links =>
           res.send({
-            page,
+            page: +page,
             perPage,
             totalLinks: count,
             isLastPage: perPage * page >= count,
@@ -115,7 +115,7 @@ app.get('/api/links/filter/', (req, res) => {
           .sort({ timestamp: sort })
           .then(links =>
             res.send({
-              page,
+              page: +page,
               perPage,
               totalLinks: count,
               isLastPage: perPage * page >= count,
@@ -132,7 +132,7 @@ app.get('/api/links/filter/', (req, res) => {
         .sort({ timestamp: sort })
         .then(links =>
           res.send({
-            page,
+            page: +page,
             perPage,
             totalLinks: count,
             isLastPage: perPage * page >= count,
@@ -413,7 +413,7 @@ app.get('/api/links/me/all', authenticate, (req, res) => {
           .sort({ timestamp: sort })
           .then(links =>
             res.send({
-              page,
+              page: +page,
               perPage,
               totalLinks: count,
               isLastPage: perPage * page >= count,
@@ -430,7 +430,7 @@ app.get('/api/links/me/all', authenticate, (req, res) => {
         .sort({ timestamp: sort })
         .then(links =>
           res.send({
-            page,
+            page: +page,
             perPage,
             totalLinks: count,
             isLastPage: perPage * page >= count,
@@ -472,7 +472,7 @@ app.get('/api/links/me/filter', authenticate, (req, res) => {
           .sort({ timestamp: sort })
           .then(links =>
             res.send({
-              page,
+              page: +page,
               perPage,
               totalLinks: count,
               isLastPage: perPage * page >= count,
@@ -491,7 +491,7 @@ app.get('/api/links/me/filter', authenticate, (req, res) => {
           .sort({ timestamp: sort })
           .then(links =>
             res.send({
-              page,
+              page: +page,
               perPage,
               totalLinks: count,
               isLastPage: perPage * page >= count,
@@ -527,6 +527,48 @@ app.post('/api/links', authenticate, (req, res) => {
 })
 
 /*
+  **** Link Update Routes ****
+*/
+
+app.patch('/api/links/:id/views', authenticate, (req, res) => {
+  const linkId = req.params.id
+  console.log(linkId)
+  Link.findByIdAndUpdate(linkId, { $inc: { views: 1 } }, { new: true })
+    .then(doc => {
+      console.log(doc)
+      res.send(doc)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(400).send(err)
+    })
+})
+
+app.patch('/api/links/:id/likes', authenticate, (req, res) => {
+  const { _id } = req.user
+  const linkId = req.params.id
+  console.log(linkId)
+  console.log('userId: ', _id)
+  Link.findById(linkId)
+    .then(doc => {
+      if (~doc.likes.indexOf(_id)) {
+        console.log('its there')
+        doc.likes.pull(_id)
+      } else {
+        doc.likes.push(_id)
+      }
+      return doc.save()
+    })
+    .then(doc => {
+      res.send(doc)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(400).send(err)
+    })
+})
+
+/*
   **** Notification Routes ****
 */
 app.post('/api/subscriptions', (req, res) => {
@@ -557,7 +599,7 @@ app.delete('/api/subscriptions/:subscriptionId', (req, res) => {
     })
 })
 
-app.listen(3000, err => {
+app.listen(4000, err => {
   if (err) return console.log(err)
-  console.log('> App running at port 3000')
+  console.log('> App running at port 4000')
 })
