@@ -27,6 +27,8 @@ const linkSchema = new Schema({
   image: String,
   publisher: String,
   title: String,
+  views: {type: Number, default: 0},
+  likes: [{type: Schema.Types.ObjectId, ref: 'User'}],
   _creator: {
     type: Schema.Types.ObjectId, ref: 'User'
   }

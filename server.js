@@ -193,7 +193,11 @@ app.get('/api/metadata/', (req, res) => {
                     message: 'Explicit content warning!. Only educational content allowed.'
                   })
                 }
-                res.send(Object.assign({}, data, { url: redirectedUrl.replace(/\/+$/, '') }))
+                res.send(
+                  Object.assign({}, data, {
+                    url: redirectedUrl.replace(/\/+$/, '')
+                  })
+                )
               })
               .catch(e => {
                 console.log(e)
