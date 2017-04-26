@@ -37,7 +37,17 @@ const linkSchema = new Schema({
 
 linkSchema.index({description: 'text', title: 'text', url: 'text'})
 
+linkSchema.pre('save', function (next) {
+  this.wasNew = this.isNew
+  next()
+})
+
 linkSchema.post('save', function (doc) {
+  console.log('post save....')
+  if (!this.wasNew) {
+    return
+  }
+  console.log('sending push...')
   mongoose.model('User').findOne({_id: doc._creator})
     .then(user => {
       const payLoad = {
