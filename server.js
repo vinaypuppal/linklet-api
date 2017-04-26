@@ -47,11 +47,11 @@ app.get('/', (req, res) => {
   res.status(404).send('Not Found')
 })
 
-const sortBy = (sort) => {
+const sortBy = sort => {
   sort = Number(sort)
   let by
   if (sort === 1 || sort === -1) {
-    by = {timestamp: sort}
+    by = { timestamp: sort }
   }
   if (sort === 2) {
     by = { views: 1, timestamp: -1 }
@@ -72,8 +72,7 @@ const sortBy = (sort) => {
 /links/all?page=2&search=keyword
 */
 app.get('/api/links/all/', (req, res) => {
-  let { page = 1, sort = -1, search } = req.query
-
+  const { page = 1, sort = -1, search } = req.query
   const perPage = 12
   if (search) {
     Link.find({ $text: { $search: search } }).count().then(count => {
@@ -616,7 +615,10 @@ app.get('/api/bookmarks/me/filter', authenticate, (req, res) => {
     Link.find({ timestamp: { $gt: start, $lte: end }, bookmarkedBy: user._id })
       .count()
       .then(count => {
-        Link.find({ timestamp: { $gt: start, $lte: end }, bookmarkedBy: user._id })
+        Link.find({
+          timestamp: { $gt: start, $lte: end },
+          bookmarkedBy: user._id
+        })
           .populate('_creator')
           .skip(perPage * (page - 1))
           .limit(perPage)
