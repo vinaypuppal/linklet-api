@@ -28,7 +28,8 @@ const linkSchema = new Schema({
   publisher: String,
   title: String,
   views: {type: Number, default: 0},
-  likes: [{type: Schema.Types.ObjectId, ref: 'User'}],
+  bookmarkedBy: [{type: Schema.Types.ObjectId, ref: 'User'}],
+  bookmarksCount: {type: Number, default: 0},
   _creator: {
     type: Schema.Types.ObjectId, ref: 'User'
   }

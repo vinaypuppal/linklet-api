@@ -33,6 +33,12 @@ var apiLimiter = new RateLimit({
   delayMs: 0 // disabled
 })
 
+if (process.env.NODE_ENV === 'development') {
+  const cors = require('cors')
+  app.use(cors())
+  console.log('cors enabled')
+}
+
 app.use(bodyParser.json())
 
 app.use('/api/', apiLimiter)
@@ -41,11 +47,33 @@ app.get('/', (req, res) => {
   res.status(404).send('Not Found')
 })
 
+const sortBy = (sort) => {
+  sort = Number(sort)
+  let by
+  if (sort === 1 || sort === -1) {
+    by = {timestamp: sort}
+  }
+  if (sort === 2) {
+    by = { views: 1, timestamp: -1 }
+  }
+  if (sort === -2) {
+    by = { views: -1, timestamp: -1 }
+  }
+  if (sort === 3) {
+    by = { bookmarksCount: 1, timestamp: -1 }
+  }
+  if (sort === -3) {
+    by = { bookmarksCount: -1, timestamp: -1 }
+  }
+  return by
+}
+
 /*
 /links/all?page=2&search=keyword
 */
 app.get('/api/links/all/', (req, res) => {
-  const { page = 1, sort = -1, search } = req.query
+  let { page = 1, sort = -1, search } = req.query
+
   const perPage = 12
   if (search) {
     Link.find({ $text: { $search: search } }).count().then(count => {
@@ -53,7 +81,7 @@ app.get('/api/links/all/', (req, res) => {
         .populate('_creator')
         .skip(perPage * (page - 1))
         .limit(perPage)
-        .sort({ timestamp: sort })
+        .sort(sortBy(sort))
         .then(links =>
           res.send({
             page: +page,
@@ -70,7 +98,7 @@ app.get('/api/links/all/', (req, res) => {
         .populate('_creator')
         .skip(perPage * (page - 1))
         .limit(perPage)
-        .sort({ timestamp: sort })
+        .sort(sortBy(sort))
         .then(links =>
           res.send({
             page: +page,
@@ -112,7 +140,7 @@ app.get('/api/links/filter/', (req, res) => {
           .populate('_creator')
           .skip(perPage * (page - 1))
           .limit(perPage)
-          .sort({ timestamp: sort })
+          .sort(sortBy(sort))
           .then(links =>
             res.send({
               page: +page,
@@ -129,7 +157,7 @@ app.get('/api/links/filter/', (req, res) => {
         .populate('_creator')
         .skip(perPage * (page - 1))
         .limit(perPage)
-        .sort({ timestamp: sort })
+        .sort(sortBy(sort))
         .then(links =>
           res.send({
             page: +page,
@@ -410,7 +438,7 @@ app.get('/api/links/me/all', authenticate, (req, res) => {
           .populate('_creator')
           .skip(perPage * (page - 1))
           .limit(perPage)
-          .sort({ timestamp: sort })
+          .sort(sortBy(sort))
           .then(links =>
             res.send({
               page: +page,
@@ -427,7 +455,7 @@ app.get('/api/links/me/all', authenticate, (req, res) => {
         .populate('_creator')
         .skip(perPage * (page - 1))
         .limit(perPage)
-        .sort({ timestamp: sort })
+        .sort(sortBy(sort))
         .then(links =>
           res.send({
             page: +page,
@@ -469,7 +497,7 @@ app.get('/api/links/me/filter', authenticate, (req, res) => {
           .populate('_creator')
           .skip(perPage * (page - 1))
           .limit(perPage)
-          .sort({ timestamp: sort })
+          .sort(sortBy(sort))
           .then(links =>
             res.send({
               page: +page,
@@ -488,7 +516,111 @@ app.get('/api/links/me/filter', authenticate, (req, res) => {
           .populate('_creator')
           .skip(perPage * (page - 1))
           .limit(perPage)
-          .sort({ timestamp: sort })
+          .sort(sortBy(sort))
+          .then(links =>
+            res.send({
+              page: +page,
+              perPage,
+              totalLinks: count,
+              isLastPage: perPage * page >= count,
+              links
+            }))
+          .catch(err => res.status(400).send(err))
+      })
+  }
+})
+
+app.get('/api/bookmarks/me/all', authenticate, (req, res) => {
+  const user = req.user
+  const { page = 1, sort = -1, search } = req.query
+  const perPage = 12
+  if (search) {
+    Link.find({ bookmarkedBy: user._id, $text: { $search: search } })
+      .count()
+      .then(count => {
+        Link.find({ bookmarkedBy: user._id, $text: { $search: search } })
+          .populate('_creator')
+          .skip(perPage * (page - 1))
+          .limit(perPage)
+          .sort(sortBy(sort))
+          .then(links =>
+            res.send({
+              page: +page,
+              perPage,
+              totalLinks: count,
+              isLastPage: perPage * page >= count,
+              links
+            }))
+          .catch(err => res.status(400).send(err))
+      })
+  } else {
+    Link.find({ bookmarkedBy: user._id }).count().then(count => {
+      Link.find({ bookmarkedBy: user._id })
+        .populate('_creator')
+        .skip(perPage * (page - 1))
+        .limit(perPage)
+        .sort(sortBy(sort))
+        .then(links =>
+          res.send({
+            page: +page,
+            perPage,
+            totalLinks: count,
+            isLastPage: perPage * page >= count,
+            links
+          }))
+        .catch(err => res.status(400).send(err))
+    })
+  }
+})
+
+app.get('/api/bookmarks/me/filter', authenticate, (req, res) => {
+  const user = req.user
+  const today = new Date()
+  const last7thDay = addDays(today, -7)
+  const {
+    start = last7thDay.getTime(),
+    end = today.getTime(),
+    page = 1,
+    sort = -1,
+    search
+  } = req.query
+  const perPage = 12
+  if (search) {
+    Link.find({
+      timestamp: { $gt: start, $lte: end },
+      $text: { $search: search },
+      bookmarkedBy: user._id
+    })
+      .count()
+      .then(count => {
+        Link.find({
+          timestamp: { $gt: start, $lte: end },
+          $text: { $search: search },
+          bookmarkedBy: user._id
+        })
+          .populate('_creator')
+          .skip(perPage * (page - 1))
+          .limit(perPage)
+          .sort(sortBy(sort))
+          .then(links =>
+            res.send({
+              page: +page,
+              perPage,
+              totalLinks: count,
+              isLastPage: perPage * page >= count,
+              links
+            }))
+          .catch(err => res.status(400).send(err))
+      })
+  } else {
+    Link.find({ timestamp: { $gt: start, $lte: end }, bookmarkedBy: user._id })
+      .count()
+      .then(count => {
+        Link.find({ timestamp: { $gt: start, $lte: end }, bookmarkedBy: user._id })
+          .populate('_creator')
+          .skip(perPage * (page - 1))
+          .limit(perPage)
+          .sort(sortBy(sort))
           .then(links =>
             res.send({
               page: +page,
@@ -530,7 +662,7 @@ app.post('/api/links', authenticate, (req, res) => {
   **** Link Update Routes ****
 */
 
-app.patch('/api/links/:id/views', authenticate, (req, res) => {
+app.patch('/api/links/:id/views', (req, res) => {
   const linkId = req.params.id
   console.log(linkId)
   Link.findByIdAndUpdate(linkId, { $inc: { views: 1 } }, { new: true })
@@ -544,18 +676,20 @@ app.patch('/api/links/:id/views', authenticate, (req, res) => {
     })
 })
 
-app.patch('/api/links/:id/likes', authenticate, (req, res) => {
+app.patch('/api/links/:id/bookmark', authenticate, (req, res) => {
   const { _id } = req.user
   const linkId = req.params.id
   console.log(linkId)
   console.log('userId: ', _id)
   Link.findById(linkId)
     .then(doc => {
-      if (~doc.likes.indexOf(_id)) {
+      if (~doc.bookmarkedBy.indexOf(_id)) {
         console.log('its there')
-        doc.likes.pull(_id)
+        doc.bookmarkedBy.pull(_id)
+        doc.bookmarksCount = doc.bookmarkedBy.length
       } else {
-        doc.likes.push(_id)
+        doc.bookmarkedBy.push(_id)
+        doc.bookmarksCount = doc.bookmarkedBy.length
       }
       return doc.save()
     })
