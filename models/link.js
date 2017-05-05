@@ -27,15 +27,16 @@ const linkSchema = new Schema({
   image: String,
   publisher: String,
   title: String,
-  views: {type: Number, default: 0},
-  bookmarkedBy: [{type: Schema.Types.ObjectId, ref: 'User'}],
-  bookmarksCount: {type: Number, default: 0},
+  views: { type: Number, default: 0 },
+  bookmarkedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  bookmarksCount: { type: Number, default: 0 },
   _creator: {
-    type: Schema.Types.ObjectId, ref: 'User'
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 })
 
-linkSchema.index({description: 'text', title: 'text', url: 'text'})
+linkSchema.index({ description: 'text', title: 'text', url: 'text' })
 
 linkSchema.pre('save', function (next) {
   this.wasNew = this.isNew
@@ -48,19 +49,17 @@ linkSchema.post('save', function (doc) {
     return
   }
   console.log('sending push...')
-  mongoose.model('User').findOne({_id: doc._creator})
-    .then(user => {
-      const payLoad = {
-        title: `${user.username} posted a new link.`,
-        body: doc.url
-      }
-      mongoose.model('Notification').find({})
-        .then(docs => {
-          docs.forEach(doc => {
-            webpush.sendNotification(doc.subscription, JSON.stringify(payLoad))
-          })
-        })
+  mongoose.model('User').findOne({ _id: doc._creator }).then(user => {
+    const payLoad = {
+      title: `${user.username} posted a new link.`,
+      body: doc.url
+    }
+    mongoose.model('Notification').find({}).then(docs => {
+      docs.forEach(doc => {
+        webpush.sendNotification(doc.subscription, JSON.stringify(payLoad))
+      })
     })
+  })
 })
 
 const Link = mongoose.model('Link', linkSchema)

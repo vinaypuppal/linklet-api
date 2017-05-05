@@ -9,4 +9,6 @@ if (env === 'development') {
   process.env.MONGO_URL = 'mongodb://localhost/links-test'
 }
 
+process.env.PER_PAGE = 12
+
 console.log(`**** Running in ${env} environment!. ****`)

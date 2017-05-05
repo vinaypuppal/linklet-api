@@ -11,8 +11,7 @@ const authenticate = (req, res, next) => {
   if (!loginToken) {
     loginToken = req.header('x-auth')
   }
-  User
-    .findByToken(loginToken)
+  User.findByToken(loginToken)
     .then(user => {
       if (!user) {
         return Promise.reject(new Error())
@@ -23,9 +22,13 @@ const authenticate = (req, res, next) => {
     })
     .catch(() => {
       if (appRedirectUrl) {
-        redirectWithQueryString(res, { error: 'No user found' }, appRedirectUrl)
+        redirectWithQueryString(
+          res,
+          { error: 'No user found' },
+          appRedirectUrl
+        )
       } else {
-        res.status(400).send({message: 'x-auth token not found'})
+        res.status(400).send({ message: 'x-auth token not found' })
       }
     })
 }

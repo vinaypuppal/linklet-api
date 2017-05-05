@@ -39,11 +39,10 @@ const UserSchema = new Schema({
 UserSchema.methods.generateAuthToken = function () {
   const user = this
   const access = 'auth'
-  return uid(24)
-    .then(token => {
-      user.tokens.push({ access, token })
-      return user.save().then(() => token)
-    })
+  return uid(24).then(token => {
+    user.tokens.push({ access, token })
+    return user.save().then(() => token)
+  })
 }
 
 UserSchema.methods.removeToken = function (token) {
@@ -56,7 +55,7 @@ UserSchema.methods.toJSON = function () {
   const user = this
   // convert user to object
   const userObj = user.toObject()
-  return _.pick(userObj, [ '_id', 'username', 'avatarUrl', 'email', 'name' ])
+  return _.pick(userObj, ['_id', 'username', 'avatarUrl', 'email', 'name'])
 }
 
 // model methods

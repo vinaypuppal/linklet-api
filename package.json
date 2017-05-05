@@ -8,7 +8,7 @@
     "dev": "nodemon server.js",
     "deploy": "npm run lint && now -t $TB -E",
     "alias": "now -t $TB alias",
-    "lint": "prettier '*.js' --write --single-quote && standard --fix"
+    "lint": "prettier '*.js' 'utils/**/*.js' 'models/**/*.js' 'middlewares/**/*.js' 'controllers/**/*.js' --write --single-quote && standard --fix"
   },
   "keywords": [],
   "author": "Vinay Puppal <me@vinaypuppal.com> (https://www.vinaypuppal.com/)",
