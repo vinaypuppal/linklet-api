@@ -16,7 +16,9 @@ module.exports = (
   }
   if (time) {
     cursor = Link.find({ timestamp: { $gt: time[0], $lte: time[1] } })
-    countCursor = Link.find({ timestamp: { $gt: time[0], $lte: time[1] } }).count()
+    countCursor = Link.find({
+      timestamp: { $gt: time[0], $lte: time[1] }
+    }).count()
   }
   if (search && time) {
     cursor = Link.find({
@@ -34,7 +36,10 @@ module.exports = (
   }
   if (createdBy && search) {
     cursor = Link.find({ _creator: createdBy, $text: { $search: search } })
-    countCursor = Link.find({ _creator: createdBy, $text: { $search: search } }).count()
+    countCursor = Link.find({
+      _creator: createdBy,
+      $text: { $search: search }
+    }).count()
   }
   if (createdBy && time) {
     cursor = Link.find({
@@ -64,7 +69,10 @@ module.exports = (
   }
   if (bookmarkedBy && search) {
     cursor = Link.find({ bookmarkedBy, $text: { $search: search } })
-    countCursor = Link.find({ bookmarkedBy, $text: { $search: search } }).count()
+    countCursor = Link.find({
+      bookmarkedBy,
+      $text: { $search: search }
+    }).count()
   }
   if (bookmarkedBy && time) {
     cursor = Link.find({
@@ -89,9 +97,10 @@ module.exports = (
     }).count()
   }
   return countCursor.then(count => {
+    console.log(perPage)
     return cursor
       .populate('_creator')
-      .skip(perPage * (page - 1))
+      .skip(+perPage * (page - 1))
       .limit(+perPage)
       .sort(sortBy(sort))
       .then(links => ({ links, count }))

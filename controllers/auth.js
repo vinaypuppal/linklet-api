@@ -139,12 +139,12 @@ exports.logout = async (req, res) => {
 exports.loginWithGithubAccessToken = async (req, res) => {
   const accessToken = req.query.access_token
   if (!accessToken) {
-    res.status(400).send({message: 'access_token query param required'})
+    res.status(400).send({ message: 'access_token query param required' })
   }
   try {
     const loginToken = await loginUser(accessToken)
     const user = await User.findByToken(loginToken)
-    res.send({loginToken, user})
+    res.send({ loginToken, user })
   } catch (e) {
     res.status(400).send(e)
   }

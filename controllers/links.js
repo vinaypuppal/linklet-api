@@ -18,8 +18,9 @@ exports.sendAllLinks = (req, res) => {
   allLinks
     .then(({ links, count }) => {
       res.send({
+        linksCount: links.length,
         page: +page,
-        perPage,
+        perPage: +perPage,
         totalLinks: count,
         isLastPage: perPage * page >= count,
         links
@@ -40,11 +41,12 @@ exports.sendFilteredLinks = (req, res) => {
     search
   } = req.query
   const time = [start, end]
-  findLinks({ page, sort, search, time, createdBy })
+  findLinks({ page, sort, search, time, createdBy, perPage })
     .then(({ links, count }) => {
       res.send({
+        linksCount: links.length,
         page: +page,
-        perPage,
+        perPage: +perPage,
         totalLinks: count,
         isLastPage: perPage * page >= count,
         links
@@ -89,7 +91,7 @@ exports.sendFilteredBookmarkedLinks = (req, res) => {
     search
   } = req.query
   const time = [start, end]
-  findLinks({ page, sort, search, time, bookmarkedBy })
+  findLinks({ page, sort, search, time, bookmarkedBy, perPage })
     .then(({ links, count }) => {
       res.send({
         page: +page,

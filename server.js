@@ -22,7 +22,8 @@ const { sendMetaData } = require('./controllers/metadata')
 
 const {
   saveSubscription,
-  deleteSubscription
+  deleteSubscription,
+  notifyUsers
 } = require('./controllers/pushSubscriptions')
 
 const authenticate = require('./middlewares/authenticate')
@@ -102,6 +103,8 @@ app.patch('/api/links/:id/bookmark', authenticate, bookmarkLink)
 app.post('/api/subscriptions', saveSubscription)
 
 app.delete('/api/subscriptions/:subscriptionId', deleteSubscription)
+
+app.post('/api/notify', notifyUsers)
 
 app.listen(4000, err => {
   if (err) return console.log(err)

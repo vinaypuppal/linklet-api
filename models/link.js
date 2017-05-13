@@ -1,14 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const webpush = require('web-push')
-
-const vapidKeys = webpush.generateVAPIDKeys()
-webpush.setGCMAPIKey(process.env.FCM_API_KEY)
-webpush.setVapidDetails(
-  'mailto:dev@vinaypuppal.com',
-  vapidKeys.publicKey,
-  vapidKeys.privateKey
-)
+const webpush = require('../utils/webpush')
 
 const linkSchema = new Schema({
   url: {
@@ -56,7 +48,10 @@ linkSchema.post('save', function (doc) {
     }
     mongoose.model('Notification').find({}).then(docs => {
       docs.forEach(doc => {
-        webpush.sendNotification(doc.subscription, JSON.stringify(payLoad))
+        webpush
+          .sendNotification(doc.subscription, JSON.stringify(payLoad))
+          .then(console.log)
+          .catch(console.log)
       })
     })
   })
