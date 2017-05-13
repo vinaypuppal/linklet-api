@@ -32,6 +32,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const RateLimit = require('express-rate-limit')
+const cors = require('cors')
 
 var apiLimiter = new RateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -39,12 +40,8 @@ var apiLimiter = new RateLimit({
   delayMs: 0 // disabled
 })
 
-if (process.env.NODE_ENV === 'development') {
-  const cors = require('cors')
-  app.use(cors())
-  console.log('cors enabled')
-}
-
+app.use(cors())
+console.log('cors enabled')
 app.use(bodyParser.json())
 
 app.use('/api/', apiLimiter)
@@ -106,7 +103,7 @@ app.delete('/api/subscriptions/:subscriptionId', deleteSubscription)
 
 app.post('/api/notify', notifyUsers)
 
-app.listen(4000, err => {
+app.listen(process.env.PORT || 4000, err => {
   if (err) return console.log(err)
-  console.log('> App running at port 4000')
+  console.log('> App running at port', process.env.PORT || 4000)
 })

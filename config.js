@@ -7,6 +7,9 @@ if (env === 'development') {
 } else if (env === 'test') {
   require('dotenv').config()
   process.env.MONGO_URL = 'mongodb://localhost/links-test'
+} else {
+  console.log('Configured')
+  require('dotenv').config()
 }
 
 process.env.PER_PAGE = 12
