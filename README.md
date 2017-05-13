@@ -9,7 +9,7 @@ Linklet as of now contains the links which are shared in whatsapp freeCodeCamp H
 
 ### Base Url
 ```
-https://api.links.linklet.ml
+https://api.linklet.ml
 ```
 
 ### Endpoints
