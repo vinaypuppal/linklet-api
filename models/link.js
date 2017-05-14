@@ -51,7 +51,12 @@ linkSchema.post('save', function (doc) {
         webpush
           .sendNotification(doc.subscription, JSON.stringify(payLoad))
           .then(console.log)
-          .catch(console.log)
+          .catch(e => {
+            mongoose.model('Notification')
+              .remove({_id: doc._id})
+              .then(console.log)
+              .catch(console.log)
+          })
       })
     })
   })
