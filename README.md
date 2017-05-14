@@ -25,7 +25,7 @@ GET /api/links/all/
   - search: keyword to be searched
 - Example
 ```
-https://api.links.linklet.ml/api/links/all?page=2&sort=-1&search=freecodecamp
+https://api.linklet.ml/api/links/all?page=2&sort=-1&search=freecodecamp
 ``` 
 
 ##### #2
@@ -41,7 +41,7 @@ GET /api/links/filter/
   - search: keyword to be searched
 - Example
 ```
-https://api.links.linklet.ml/api/links/filter?start=1490342174681&end=1490428574681&search=javascript
+https://api.linklet.ml/api/links/filter?start=1490342174681&end=1490428574681&search=javascript
 ``` 
 
 ##### #3
@@ -103,7 +103,7 @@ GET /api/metadata
 - It takes only one query param i.e `url`
 - Example
 ```
-https://api.links.linklet.ml/api/metadata?url=https://freecodecamo.com
+https://api.linklet.ml/api/metadata?url=https://freecodecamo.com
 ```
 - Response
 ```
