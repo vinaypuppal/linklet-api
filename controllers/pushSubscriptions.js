@@ -30,11 +30,16 @@ exports.notifyUsers = (req, res) => {
     docs.forEach(doc => {
       webpush
         .sendNotification(doc.subscription, JSON.stringify(payLoad))
-        .then(result => {
-          console.log(result)
-          res.send({ success: true })
+        .then(() => {
+          console.log('sent')
         })
-        .catch(e => res.status(400).send(e))
+        .catch(e => {
+          console.log(e.statusCode)
+          Notification.findByIdAndRemove(doc._id)
+              .then(() => console.log('removed'))
+              .catch(console.log)
+        })
     })
+    res.send({ success: true })
   })
 }

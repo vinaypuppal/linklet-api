@@ -52,9 +52,10 @@ linkSchema.post('save', function (doc) {
           .sendNotification(doc.subscription, JSON.stringify(payLoad))
           .then(console.log)
           .catch(e => {
+            console.log(e.statusCode)
             mongoose.model('Notification')
-              .remove({_id: doc._id})
-              .then(console.log)
+              .findByIdAndRemove(doc._id)
+              .then(() => console.log('removed'))
               .catch(console.log)
           })
       })
