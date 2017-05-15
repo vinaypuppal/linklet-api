@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const webpush = require('../utils/webpush')
+const axios = require('axios')
 
 const linkSchema = new Schema({
   url: {
@@ -46,19 +46,10 @@ linkSchema.post('save', function (doc) {
       title: `${user.username} posted a new link.`,
       body: doc.url
     }
-    mongoose.model('Notification').find({}).then(docs => {
-      docs.forEach(doc => {
-        webpush
-          .sendNotification(doc.subscription, JSON.stringify(payLoad))
-          .then(() => console.log('sent'))
-          .catch(e => {
-            console.log(e)
-            if (e.statusCode === 410) {
-              mongoose.model('Notification').findByIdAndRemove(doc._id).then(() => console.log(`removed ${doc._id}`))
-            }
-          })
-      })
-    })
+    axios
+    .post('https://linklet-notify.now.sh', payLoad)
+    .then(({data}) => console.log(data))
+    .catch(console.log)
   })
 })
 
