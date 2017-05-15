@@ -1,0 +1,8 @@
+{
+  "name": "linklet-api",
+  "alias": "api.linklet.ml",
+  "env": {
+    "MONGO_URL": "@fcc-hyd-links-mlab",
+    "NODE_ENV": "production"
+  }
+}

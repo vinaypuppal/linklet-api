@@ -34,10 +34,7 @@ exports.notifyUsers = (req, res) => {
           console.log('sent')
         })
         .catch(e => {
-          console.log(e.statusCode)
-          Notification.findByIdAndRemove(doc._id)
-              .then(() => console.log('removed'))
-              .catch(console.log)
+          console.log(e)
         })
     })
     res.send({ success: true })

@@ -50,13 +50,12 @@ linkSchema.post('save', function (doc) {
       docs.forEach(doc => {
         webpush
           .sendNotification(doc.subscription, JSON.stringify(payLoad))
-          .then(console.log)
+          .then(() => console.log('sent'))
           .catch(e => {
-            console.log(e.statusCode)
-            mongoose.model('Notification')
-              .findByIdAndRemove(doc._id)
-              .then(() => console.log('removed'))
-              .catch(console.log)
+            console.log(e)
+            if (e.statusCode === 410) {
+              mongoose.model('Notification').findByIdAndRemove(doc._id).then(() => console.log(`removed ${doc._id}`))
+            }
           })
       })
     })
