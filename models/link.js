@@ -40,7 +40,7 @@ linkSchema.post('save', function (doc) {
   if (!this.wasNew) {
     return
   }
-  console.log('sending push...')
+  console.log('sending push notification...')
   mongoose.model('User').findOne({ _id: doc._creator }).then(user => {
     const payLoad = {
       title: `${user.username} posted a new link.`,
