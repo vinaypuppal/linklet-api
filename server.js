@@ -31,20 +31,11 @@ const authenticate = require('./middlewares/authenticate')
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const RateLimit = require('express-rate-limit')
 const cors = require('cors')
-
-var apiLimiter = new RateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,
-  delayMs: 0 // disabled
-})
 
 app.use(cors())
 console.log('cors enabled')
 app.use(bodyParser.json())
-
-app.use('/api/', apiLimiter)
 
 app.get('/', (req, res) => res.status(404).send('Not Found'))
 
