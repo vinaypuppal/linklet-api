@@ -78,7 +78,7 @@ app.get('/api/bookmarks/me/filter', authenticate, sendFilteredBookmarkedLinks)
 app.post('/api/links', authenticate, saveLink)
 
 /*
-  **** Link Update Routes ****
+  ***** Link Update Routes *****
 */
 
 app.patch('/api/links/:id/views', incrementView)
