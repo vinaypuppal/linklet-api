@@ -15,7 +15,6 @@
   "author": "Vinay Puppal <me@vinaypuppal.com> (https://www.vinaypuppal.com/)",
   "license": "MIT",
   "dependencies": {
-    "apicache": "^0.8.7",
     "axios": "^0.16.1",
     "body-parser": "^1.17.1",
     "cors": "^2.8.3",

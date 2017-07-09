@@ -29,15 +29,8 @@ const {
 const authenticate = require('./middlewares/authenticate')
 
 const express = require('express')
-const apicache = require('apicache')
 const bodyParser = require('body-parser')
 const app = express()
-const cache = apicache.options({
-  debug: true
-}).middleware
-
-const onlyStatus200 = (req, res) => res.statusCode === 200
-const cacheSuccesses = cache('1 day', onlyStatus200)
 
 const cors = require('cors')
 
@@ -50,14 +43,14 @@ app.get('/', (req, res) => res.status(404).send('Not Found'))
 /*
 /links/all?page=2&search=keyword
 */
-app.get('/api/links/all/', cacheSuccesses, sendAllLinks)
+app.get('/api/links/all/', sendAllLinks)
 
 /*
 /links/filter?start=738687637186&end=6327653668716&page=2&search=keyword
 */
-app.get('/api/links/filter/', cacheSuccesses, sendFilteredLinks)
+app.get('/api/links/filter/', sendFilteredLinks)
 
-app.get('/api/metadata/', cache('1 day'), sendMetaData)
+app.get('/api/metadata/', sendMetaData)
 
 /****************
   Auth Routes
@@ -86,10 +79,6 @@ app.get('/api/bookmarks/me/filter', authenticate, sendFilteredBookmarkedLinks)
 app.post(
   '/api/links',
   authenticate,
-  (req, res, next) => {
-    apicache.clear()
-    next()
-  },
   saveLink
 )
 
@@ -99,19 +88,11 @@ app.post(
 
 app.patch(
   '/api/links/:id/views',
-  (req, res, next) => {
-    apicache.clear()
-    next()
-  },
   incrementView
 )
 
 app.patch(
   '/api/links/:id/bookmark',
-  (req, res, next) => {
-    apicache.clear()
-    next()
-  },
   authenticate,
   bookmarkLink
 )

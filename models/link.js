@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const axios = require('axios')
-const apicache = require('apicache')
 
 const linkSchema = new Schema({
   url: {
@@ -38,7 +37,6 @@ linkSchema.pre('save', function (next) {
 
 linkSchema.post('save', function (doc) {
   console.log('post save....')
-  apicache.clear()
   if (!this.wasNew) {
     return
   }
