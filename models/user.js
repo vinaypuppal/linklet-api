@@ -43,12 +43,12 @@ UserSchema.methods.generateAuthToken = function () {
     user.tokens.push({ access, token })
     return user.save().then(() => token)
   })
-};
+}
 
 UserSchema.methods.removeToken = function (token) {
   const user = this
   return user.update({ $pull: { tokens: { token } } })
-};
+}
 
 // to overide what sent to client
 UserSchema.methods.toJSON = function () {
@@ -56,7 +56,7 @@ UserSchema.methods.toJSON = function () {
   // convert user to object
   const userObj = user.toObject()
   return _.pick(userObj, ['_id', 'username', 'avatarUrl', 'email', 'name'])
-};
+}
 
 // model methods
 UserSchema.statics.findByToken = function (token) {
@@ -64,7 +64,7 @@ UserSchema.statics.findByToken = function (token) {
   return User.findOne({
     'tokens.token': token
   })
-};
+}
 
 const User = mongoose.model('User', UserSchema)
 

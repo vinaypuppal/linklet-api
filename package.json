@@ -15,6 +15,7 @@
   "author": "Vinay Puppal <me@vinaypuppal.com> (https://www.vinaypuppal.com/)",
   "license": "MIT",
   "dependencies": {
+    "apicache": "^0.8.7",
     "axios": "^0.16.1",
     "body-parser": "^1.17.1",
     "cors": "^2.8.3",
@@ -28,7 +29,7 @@
     "jsonwebtoken": "^7.3.0",
     "lodash": "^4.17.4",
     "metascraper": "^1.0.6",
-    "mongoose": "^4.11.1",
+    "mongoose": "4.10.8",
     "now-logs": "^0.0.7",
     "qs": "^6.5.0",
     "uid-promise": "^1.0.0",
