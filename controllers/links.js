@@ -106,24 +106,13 @@ exports.sendFilteredBookmarkedLinks = (req, res) => {
 
 exports.saveLink = (req, res) => {
   const { _id } = req.user
-  let data = _.pick(req.body, [
-    'url',
-    'author',
-    'date',
-    'description',
-    'image',
-    'title',
-    'publisher'
-  ])
+  let data = _.pick(req.body, ['url', 'description', 'image', 'title'])
   data = Object.assign({}, data, {
     timestamp: new Date().getTime(),
     _creator: _id
   })
   const link = new Link(data)
-  link
-    .save()
-    .then(doc => res.send(doc))
-    .catch(err => res.status(400).send(err))
+  link.save().then(doc => res.send(doc)).catch(err => res.status(400).send(err))
 }
 
 exports.incrementView = (req, res) => {

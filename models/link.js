@@ -13,11 +13,8 @@ const linkSchema = new Schema({
     required: true,
     index: true
   },
-  author: String,
-  date: String,
   description: String,
   image: String,
-  publisher: String,
   title: String,
   views: { type: Number, default: 0 },
   bookmarkedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
@@ -30,12 +27,12 @@ const linkSchema = new Schema({
 
 linkSchema.index({ description: 'text', title: 'text', url: 'text' })
 
-linkSchema.pre('save', function (next) {
+linkSchema.pre('save', function(next) {
   this.wasNew = this.isNew
   next()
 })
 
-linkSchema.post('save', function (doc) {
+linkSchema.post('save', function(doc) {
   console.log('post save....')
   if (!this.wasNew) {
     return
